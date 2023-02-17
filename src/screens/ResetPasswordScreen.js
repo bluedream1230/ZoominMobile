@@ -1,0 +1,90 @@
+import React, { useState } from 'react'
+import { Image, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { Text } from 'react-native-paper'
+import { theme } from '../core/theme'
+import Background from '../components/Background'
+import TextInput from '../components/TextInput'
+import Button from '../components/Button'
+import { emailValidator } from '../helpers/emailValidator'
+
+export default function ResetPasswordScreen({ navigation }) {
+  const [email, setEmail] = useState({ value: '', error: '' })
+
+  const sendEmailRequest = () => {
+    const emailError = emailValidator(email.value)
+    if (emailError) {
+      setEmail({ ...email, error: emailError })
+      return
+    }
+    navigation.navigate('CreateNewPassword')
+  }
+
+  return (
+    <Background>
+      <Image
+        source={require('../assets/recoverPassword.png')}
+        style={styles.image}
+      />
+      <Text style={styles.description}>
+        Enter the email associated with your account and we'll send an email
+        with instructions to reset your password.
+      </Text>
+      <TextInput
+        label="Your Email*"
+        returnKeyType="done"
+        value={email.value}
+        onChangeText={(text) => setEmail({ value: text, error: '' })}
+        error={!!email.error}
+        errorText={email.error}
+        autoCapitalize="none"
+        autoCompleteType="email"
+        textContentType="emailAddress"
+        keyboardType="email-address"
+        icon={require('../assets/sms-tracking.png')}
+      />
+      <Button
+        mode="contained"
+        onPress={sendEmailRequest}
+        style={{ marginTop: 16 }}
+      >
+        Send Instructions
+      </Button>
+      <View style={styles.row}>
+        <Text style={styles.text}>Back to </Text>
+        <TouchableOpacity onPress={() => navigation.replace('LoginScreen')}>
+          <Text style={styles.link}>Login</Text>
+        </TouchableOpacity>
+      </View>
+    </Background>
+  )
+}
+
+const styles = StyleSheet.create({
+  description: {
+    height: 70,
+    width: '100%',
+    textAlign: 'center',
+    fontSize: 14,
+    fontWeight: '400',
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    lineHeight: 24,
+    color: '#FFF',
+  },
+  text: {
+    color: theme.colors.white,
+  },
+  row: {
+    flexDirection: 'row',
+    marginTop: 4,
+  },
+  link: {
+    fontWeight: 'bold',
+    color: theme.colors.link,
+  },
+  image: {
+    width: '100%',
+    height: 40,
+    margin: 5,
+  },
+})
