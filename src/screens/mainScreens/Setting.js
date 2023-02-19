@@ -1,34 +1,61 @@
 import React from 'react'
-import { Image, StyleSheet } from 'react-native'
+import { Image, StyleSheet, View } from 'react-native'
 import { Text } from 'react-native-paper'
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import Background from '../../components/Background'
 import { theme } from '../../core/theme'
+import Header from '../../components/Header'
 
 export default function Setting() {
-  console.log('Setting')
   return (
-    <Background>
-      <Image
-        source={require('../../assets/welcome2.png')}
-        style={styles.image}
-      />
-      <Text style={styles.username}>Setting</Text>
+    <Background type="main">
+      <Header label="Settings" icon={require('../../assets/setting.png')} />
+      <View style={styles.contain}>
+        <MaterialCommunityIcons
+          name="arrow-right"
+          size={24}
+          color={theme.colors.white}
+        />
+        <Text style={styles.text}>Zoomin Game</Text>
+      </View>
+      <View style={styles.contain}>
+        <MaterialCommunityIcons
+          name="arrow-right"
+          size={24}
+          color={theme.colors.white}
+        />
+        <Text style={styles.text}>How To Play</Text>
+      </View>
+      <View style={styles.contain}>
+        <MaterialCommunityIcons
+          name="arrow-right"
+          size={24}
+          color={theme.colors.white}
+        />
+        <Text style={styles.text}>Game Play</Text>
+      </View>
+      <View style={styles.contain}>
+        <MaterialCommunityIcons
+          name="arrow-right"
+          size={24}
+          color={theme.colors.white}
+        />
+        <Text style={styles.text}>Turn On Notification</Text>
+      </View>
     </Background>
   )
 }
 
 const styles = StyleSheet.create({
-  image: {
-    width: '100%',
-    height: 40,
-    margin: 5,
+  contain: {
+    marginTop: 20,
+    display: 'flex',
+    flexDirection: 'row',
   },
-  username: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontWeight: '700',
-    fontSize: 28,
-    lineHeight: 40,
-    color: theme.colors.white,
+  text: {
+    paddingLeft: 10,
+    fontSize: 20,
+    color: '#FFFFFF',
+    fontWeight: '500',
   },
 })

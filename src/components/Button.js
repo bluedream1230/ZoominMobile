@@ -3,15 +3,11 @@ import { StyleSheet } from 'react-native'
 import { Button as PaperButton } from 'react-native-paper'
 import { theme } from '../core/theme'
 
-export default function Button({ mode, style, ...props }) {
+export default function Button({ mode, style, labelStyle, ...props }) {
   return (
     <PaperButton
-      style={[
-        styles.button,
-        { backgroundColor: theme.colors.buttonColor },
-        style,
-      ]}
-      labelStyle={styles.text}
+      style={[styles.button, style]}
+      labelStyle={[styles.text, labelStyle]}
       mode={mode}
       {...props}
     />
@@ -24,10 +20,12 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     paddingVertical: 2,
     borderRadius: 16,
+    backgroundColor: theme.colors.buttonColor,
   },
   text: {
-    fontWeight: 'bold',
-    fontSize: 15,
-    lineHeight: 26,
+    fontFamily: 'Inter',
+    fontWeight: '700',
+    fontSize: 20,
+    lineHeight: 24,
   },
 })

@@ -1,17 +1,26 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
-import { Text } from 'react-native-paper'
+import { StyleSheet, View } from 'react-native'
+import { Text, Avatar } from 'react-native-paper'
 import { theme } from '../core/theme'
 
-export default function Header(props) {
-  return <Text style={styles.header} {...props} />
+export default function Header({ label, icon, ...props }) {
+  return (
+    <View style={styles.header}>
+      <Avatar.Image size={23} source={icon} />
+      <Text style={styles.text}>{label}</Text>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
   header: {
-    fontSize: 28,
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  text: {
+    paddingLeft: 10,
+    fontSize: 20,
     color: '#FFFFFF',
-    fontWeight: '700',
-    paddingVertical: 10,
+    fontWeight: '500',
   },
 })
