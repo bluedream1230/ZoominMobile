@@ -38,23 +38,33 @@ export default function Event() {
       </View>
 
       {status.value === 'myevent' ? (
-        <View style={styles.preview}>
-          <StyleCard>
-            <Text style={styles.text1}>
-              Happy ST.Patrick's Day Enjoy Free Drink On US!
-            </Text>
-            <Text style={styles.text2}>20% OFF</Text>
-            <Text style={styles.text3}>On Extra Beverages*</Text>
+        <View style={styles.event}>
+          <StyleCard style={styles.event}>
+            <Text style={styles.text1}>Event Name: ABC championshipe</Text>
+            <Text style={styles.text1}>Event Schedule:</Text>
+            <Text style={styles.text1}>From: 4/Oct/2022 12:00pm</Text>
+            <Text style={styles.text1}>To: 4/Oct/2022 04:00:pm</Text>
+            <Text style={styles.text1}>Location: XYX Stadium</Text>
+            <Text style={styles.text1}>Rewards: 50 Coin</Text>
           </StyleCard>
         </View>
       ) : status.value === 'future' ? (
-        <View style={styles.rewardcard}>
-          <StyleCard>
-            <Text style={styles.text1}>
-              Happy ST.Patrick's Day Enjoy Free Drink On US!
-            </Text>
-            <Text style={styles.text2}>20% OFF</Text>
-            <Text style={styles.text3}>On Extra Beverages*</Text>
+        <View style={styles.event}>
+          <StyleCard style={styles.event}>
+            <Text style={styles.text1}>Event Name: ABC championshipe</Text>
+            <Text style={styles.text1}>Event Schedule:</Text>
+            <Text style={styles.text1}>From: 4/Oct/2022 12:00pm</Text>
+            <Text style={styles.text1}>To: 4/Oct/2022 04:00:pm</Text>
+            <Text style={styles.text1}>Location: XYX Stadium</Text>
+            <Text style={styles.text1}>Rewards: 50 Coin</Text>
+          </StyleCard>
+          <StyleCard style={styles.event}>
+            <Text style={styles.text1}>Event Name: ABC championshipe</Text>
+            <Text style={styles.text1}>Event Schedule:</Text>
+            <Text style={styles.text1}>From: 4/Oct/2022 12:00pm</Text>
+            <Text style={styles.text1}>To: 4/Oct/2022 04:00:pm</Text>
+            <Text style={styles.text1}>Location: XYX Stadium</Text>
+            <Text style={styles.text1}>Rewards: 50 Coin</Text>
           </StyleCard>
         </View>
       ) : null}
@@ -94,32 +104,16 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: '500',
   },
-  preview: {
+  event: {
     display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  rewardcard: {
-    width: '50%',
+    alignItems: 'center',
+    width: '100%',
   },
   text1: {
-    fontFamily: 'Inter',
-    fontSize: 14,
-    color: '#FFFFFF',
-    fontWeight: '400',
-  },
-  text2: {
     fontFamily: 'Roboto',
-    fontWeight: '500',
-    fontSize: 27,
-    lineHeight: 40,
-    color: '#FFFFFF',
-  },
-  text3: {
-    fontFamily: 'Inter',
-    fontWeight: '300',
-    fontSize: 12,
-    lineHeight: 18,
-    color: '#FFFFFF',
+    fontWeight: '700',
+    fontSize: 16,
+    lineHeight: 23,
+    color: theme.colors.white,
   },
 })

@@ -4,10 +4,10 @@ import { Text, Avatar, Button } from 'react-native-paper'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { theme } from '../core/theme'
 
-export default function StyleCard({ children }) {
+export default function StyleCard({ children, style }) {
   return (
-    <View style={styles.main}>
-      <View style={styles.sec}>{children}</View>
+    <View style={[styles.main, style]}>
+      <View style={[styles.sec, style]}>{children}</View>
     </View>
   )
 }
