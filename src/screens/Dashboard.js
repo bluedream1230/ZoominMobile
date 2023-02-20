@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Image } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
+import { Foundation } from '@expo/vector-icons'
 
-import { Home, Setting, Reward } from './mainScreens'
+import { Home, Setting, Reward, Event, Play } from './mainScreens'
 import { theme } from '../core/theme'
 
 const Tab = createBottomTabNavigator()
@@ -54,6 +55,30 @@ export default function Dashboard({ navigation }) {
               size={24}
               color={theme.colors.link}
             />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Event"
+        component={Event}
+        options={{
+          tabBarLabel: 'Event',
+          tabBarIcon: () => (
+            <MaterialCommunityIcons
+              name="calendar-month-outline"
+              size={24}
+              color={theme.colors.link}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Play"
+        component={Play}
+        options={{
+          tabBarLabel: 'Play',
+          tabBarIcon: () => (
+            <Foundation name="dollar" size={24} color={theme.colors.link} />
           ),
         }}
       />
