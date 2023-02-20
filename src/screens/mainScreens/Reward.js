@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Image, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { Text } from 'react-native-paper'
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
 import Button from '../../components/Button'
@@ -73,9 +72,15 @@ export default function Reward() {
           />
         </View>
       ) : status.value === 'reward' ? (
-        <StyleCard>
-          <Text>123123</Text>
-        </StyleCard>
+        <View style={styles.rewardcard}>
+          <StyleCard>
+            <Text style={styles.text1}>
+              Happy ST.Patrick's Day Enjoy Free Drink On US!
+            </Text>
+            <Text style={styles.text2}>20% OFF</Text>
+            <Text style={styles.text3}>On Extra Beverages*</Text>
+          </StyleCard>
+        </View>
       ) : null}
     </Background>
   )
@@ -117,5 +122,28 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
+  },
+  rewardcard: {
+    width: '50%',
+  },
+  text1: {
+    fontFamily: 'Inter',
+    fontSize: 14,
+    color: '#FFFFFF',
+    fontWeight: '400',
+  },
+  text2: {
+    fontFamily: 'Roboto',
+    fontWeight: '500',
+    fontSize: 27,
+    lineHeight: 40,
+    color: '#FFFFFF',
+  },
+  text3: {
+    fontFamily: 'Inter',
+    fontWeight: '300',
+    fontSize: 12,
+    lineHeight: 18,
+    color: '#FFFFFF',
   },
 })
