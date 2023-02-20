@@ -12,5 +12,7 @@ export const theme = {
     buttonColor: '#FF0676',
     transparent: '#FFFFFF00',
     link: '#04B4DD',
+    cardBackground: '#221343',
+    cardBorder: '#3A3A3A',
   },
 }

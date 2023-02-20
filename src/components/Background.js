@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     width: '100%',
-    maxWidth: 380,
+    maxWidth: 400,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     width: '100%',
-    maxWidth: 380,
+    maxWidth: 400,
+    // alignItems: 'center',
   },
 })
