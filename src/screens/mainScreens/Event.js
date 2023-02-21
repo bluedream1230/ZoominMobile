@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Text } from 'react-native-paper'
+import QRCode from 'react-native-qrcode-svg'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
 import Button from '../../components/Button'
@@ -26,7 +27,7 @@ export default function Event() {
           My Events
         </Button>
         <Button
-          labelStyle={{ color: theme.colors.white }}
+          labelStyle={{ color: theme.colors.white, fontSize: 13 }}
           mode={status.value === 'future' ? 'contained' : 'outlined'}
           style={
             status.value === 'future' ? styles.selectedButton : styles.button
@@ -40,6 +41,12 @@ export default function Event() {
       {status.value === 'myevent' ? (
         <View style={styles.event}>
           <StyleCard style={styles.event}>
+            <View>
+              <QRCode
+                value="http://awesome.link.qr"
+                logoBackgroundColor="transparent"
+              />
+            </View>
             <Text style={styles.text1}>Event Name: ABC championshipe</Text>
             <Text style={styles.text1}>Event Schedule:</Text>
             <Text style={styles.text1}>From: 4/Oct/2022 12:00pm</Text>
@@ -51,20 +58,28 @@ export default function Event() {
       ) : status.value === 'future' ? (
         <View style={styles.event}>
           <StyleCard style={styles.event}>
-            <Text style={styles.text1}>Event Name: ABC championshipe</Text>
-            <Text style={styles.text1}>Event Schedule:</Text>
-            <Text style={styles.text1}>From: 4/Oct/2022 12:00pm</Text>
-            <Text style={styles.text1}>To: 4/Oct/2022 04:00:pm</Text>
-            <Text style={styles.text1}>Location: XYX Stadium</Text>
-            <Text style={styles.text1}>Rewards: 50 Coin</Text>
+            <Text style={styles.text1}>Event Name: NBA Mania</Text>
+            <Text style={styles.text1}>Date : 10/sep/2022</Text>
+            <Text style={styles.text1}>Location : XYX Stadium, NY</Text>
+            <Button
+              labelStyle={{ color: theme.colors.white }}
+              mode="contained"
+              style={styles.ticket}
+            >
+              Buy Tickets
+            </Button>
           </StyleCard>
           <StyleCard style={styles.event}>
-            <Text style={styles.text1}>Event Name: ABC championshipe</Text>
-            <Text style={styles.text1}>Event Schedule:</Text>
-            <Text style={styles.text1}>From: 4/Oct/2022 12:00pm</Text>
-            <Text style={styles.text1}>To: 4/Oct/2022 04:00:pm</Text>
-            <Text style={styles.text1}>Location: XYX Stadium</Text>
-            <Text style={styles.text1}>Rewards: 50 Coin</Text>
+            <Text style={styles.text1}>Event Name: NBA Mania</Text>
+            <Text style={styles.text1}>Date : 10/sep/2022</Text>
+            <Text style={styles.text1}>Location : XYX Stadium, NY</Text>
+            <Button
+              labelStyle={{ color: theme.colors.white }}
+              mode="contained"
+              style={styles.ticket}
+            >
+              Buy Tickets
+            </Button>
           </StyleCard>
         </View>
       ) : null}
@@ -84,6 +99,15 @@ const styles = StyleSheet.create({
   },
   selectedButton: {
     width: '47%',
+    marginVertical: 10,
+    paddingVertical: 2,
+    borderRadius: 16,
+    backgroundColor: theme.colors.buttonColor,
+    color: theme.colors.white,
+    borderWidth: 2,
+  },
+  ticket: {
+    width: '70%',
     marginVertical: 10,
     paddingVertical: 2,
     borderRadius: 16,

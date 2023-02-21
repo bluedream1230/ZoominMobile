@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Text } from 'react-native-paper'
+import QRCode from 'react-native-qrcode-svg'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
 import Button from '../../components/Button'
@@ -14,7 +15,7 @@ export default function Play() {
       <Header label="Play Time" icon={require('../../assets/play.png')} />
       <View style={styles.contain}>
         <Button
-          labelStyle={{ color: theme.colors.white }}
+          labelStyle={{ color: theme.colors.white, fontSize: 16 }}
           mode={status.value === 'playground' ? 'contained' : 'outlined'}
           style={
             status.value === 'playground'
@@ -41,22 +42,62 @@ export default function Play() {
 
       {status.value === 'playground' ? (
         <View style={styles.preview}>
-          <StyleCard>
-            <Text style={styles.text1}>
-              Happy ST.Patrick's Day Enjoy Free Drink On US!
-            </Text>
-            <Text style={styles.text2}>20% OFF</Text>
-            <Text style={styles.text3}>On Extra Beverages*</Text>
+          <StyleCard style={styles.preview}>
+            <Header
+              label="ex Roosevelt Field Mall"
+              icon={require('../../assets/playground/flag.png')}
+            />
+            <Header
+              label="630 Old Country Rd. Garden City. Ny 11530"
+              icon={require('../../assets/playground/position.png')}
+            />
+            <Header
+              label="Store Discount Upto 35%"
+              icon={require('../../assets/playground/gift.png')}
+            />
+          </StyleCard>
+          <StyleCard style={styles.preview}>
+            <Header
+              label="Vesuvio Playground"
+              icon={require('../../assets/playground/flag.png')}
+            />
+            <Header
+              label="101 Thompson St. New York. NY 1001"
+              icon={require('../../assets/playground/position.png')}
+            />
+            <Header
+              label="Store Discount Upto 30%"
+              icon={require('../../assets/playground/gift.png')}
+            />
           </StyleCard>
         </View>
       ) : status.value === 'playnow' ? (
-        <View style={styles.rewardcard}>
-          <StyleCard>
-            <Text style={styles.text1}>
-              Happy ST.Patrick's Day Enjoy Free Drink On US!
-            </Text>
-            <Text style={styles.text2}>20% OFF</Text>
-            <Text style={styles.text3}>On Extra Beverages*</Text>
+        <View style={styles.playlink}>
+          <StyleCard style={styles.playlink}>
+            <View>
+              <QRCode
+                value="http://awesome.link.qr"
+                logoBackgroundColor="transparent"
+              />
+            </View>
+            <View style={{ marginTop: 10 }}>
+              <Header
+                label="Sponsor : Chipotle"
+                icon={require('../../assets/playground/sponsor.png')}
+              />
+              <Header
+                label="Game : Basketball Shootout"
+                icon={require('../../assets/playground/game.png')}
+              />
+              <Header
+                label="Rewards : 50 coins"
+                icon={require('../../assets/playground/reward.png')}
+              />
+              <Header
+                label="Game Duration : 10 Minutes"
+                icon={require('../../assets/playground/duration.png')}
+              />
+            </View>
           </StyleCard>
         </View>
       ) : null}
@@ -96,32 +137,37 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: '500',
   },
-  preview: {
+  playlink: {
     display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    alignItems: 'center',
+    flexDirection: 'column',
   },
-  rewardcard: {
-    width: '50%',
-  },
-  text1: {
-    fontFamily: 'Inter',
-    fontSize: 14,
-    color: '#FFFFFF',
-    fontWeight: '400',
-  },
-  text2: {
-    fontFamily: 'Roboto',
-    fontWeight: '500',
-    fontSize: 27,
-    lineHeight: 40,
-    color: '#FFFFFF',
-  },
-  text3: {
-    fontFamily: 'Inter',
-    fontWeight: '300',
-    fontSize: 12,
-    lineHeight: 18,
-    color: '#FFFFFF',
-  },
+  // event: {
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   width: '100%',
+  // },
+  // rewardcard: {
+  //   width: '50%',
+  // },
+  // text1: {
+  //   fontFamily: 'Inter',
+  //   fontSize: 14,
+  //   color: '#FFFFFF',
+  //   fontWeight: '400',
+  // },
+  // text2: {
+  //   fontFamily: 'Roboto',
+  //   fontWeight: '500',
+  //   fontSize: 27,
+  //   lineHeight: 40,
+  //   color: '#FFFFFF',
+  // },
+  // text3: {
+  //   fontFamily: 'Inter',
+  //   fontWeight: '300',
+  //   fontSize: 12,
+  //   lineHeight: 18,
+  //   color: '#FFFFFF',
+  // },
 })
