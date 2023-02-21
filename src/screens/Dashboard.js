@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Image } from 'react-native'
+import { Image, View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
+import Ionicons from '@expo/vector-icons/Ionicons'
 import { Foundation } from '@expo/vector-icons'
 
 import { Home, Setting, Reward, Event, Play } from './mainScreens'
@@ -22,10 +23,9 @@ export default function Dashboard({ navigation }) {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: () => (
-            <MaterialCommunityIcons
-              name="home"
-              size={24}
-              color={theme.colors.link}
+            <Image
+              source={require('../assets/tabbaricons/home1.png')}
+              style={{ width: 24, height: 24 }}
             />
           ),
         }}
@@ -36,10 +36,9 @@ export default function Dashboard({ navigation }) {
         options={{
           tabBarLabel: 'Setting',
           tabBarIcon: () => (
-            <MaterialCommunityIcons
-              name="cellphone-settings"
-              size={24}
-              color={theme.colors.link}
+            <Image
+              source={require('../assets/tabbaricons/setting2.png')}
+              style={{ width: 24, height: 24 }}
             />
           ),
         }}
@@ -50,10 +49,9 @@ export default function Dashboard({ navigation }) {
         options={{
           tabBarLabel: 'Reward',
           tabBarIcon: () => (
-            <MaterialCommunityIcons
-              name="star-face"
-              size={24}
-              color={theme.colors.link}
+            <Image
+              source={require('../assets/tabbaricons/reward1.png')}
+              style={{ width: 24, height: 24 }}
             />
           ),
         }}
@@ -64,10 +62,9 @@ export default function Dashboard({ navigation }) {
         options={{
           tabBarLabel: 'Event',
           tabBarIcon: () => (
-            <MaterialCommunityIcons
-              name="calendar-month-outline"
-              size={24}
-              color={theme.colors.link}
+            <Image
+              source={require('../assets/tabbaricons/calendar1.png')}
+              style={{ width: 24, height: 24 }}
             />
           ),
         }}
@@ -78,7 +75,10 @@ export default function Dashboard({ navigation }) {
         options={{
           tabBarLabel: 'Play',
           tabBarIcon: () => (
-            <Foundation name="dollar" size={24} color={theme.colors.link} />
+            <Image
+              source={require('../assets/tabbaricons/play2.png')}
+              style={{ width: 24, height: 24 }}
+            />
           ),
         }}
       />

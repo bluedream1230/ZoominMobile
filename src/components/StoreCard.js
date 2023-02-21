@@ -23,10 +23,9 @@ export default function StoreCard({ label, url, val }) {
       </View>
       <Button style={styles.storebutton} labelStyle={styles.text}>
         Redeem Now
-        <MaterialCommunityIcons
-          name="arrow-right"
-          size={14}
-          color={theme.colors.white}
+        <Image
+          source={require('../assets/arrowright.png')}
+          style={{ width: 14, height: 14 }}
         />
       </Button>
     </View>

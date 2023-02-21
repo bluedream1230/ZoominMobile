@@ -11,34 +11,30 @@ export default function Setting() {
     <Background type="main">
       <Header label="Settings" icon={require('../../assets/setting.png')} />
       <View style={styles.contain}>
-        <MaterialCommunityIcons
-          name="arrow-right"
-          size={24}
-          color={theme.colors.white}
+        <Image
+          source={require('../../assets/arrowright.png')}
+          style={{ width: 24, height: 24 }}
         />
         <Text style={styles.text}>Zoomin Game</Text>
       </View>
       <View style={styles.contain}>
-        <MaterialCommunityIcons
-          name="arrow-right"
-          size={24}
-          color={theme.colors.white}
+        <Image
+          source={require('../../assets/arrowright.png')}
+          style={{ width: 24, height: 24 }}
         />
         <Text style={styles.text}>How To Play</Text>
       </View>
       <View style={styles.contain}>
-        <MaterialCommunityIcons
-          name="arrow-right"
-          size={24}
-          color={theme.colors.white}
+        <Image
+          source={require('../../assets/arrowright.png')}
+          style={{ width: 24, height: 24 }}
         />
         <Text style={styles.text}>Game Play</Text>
       </View>
       <View style={styles.contain}>
-        <MaterialCommunityIcons
-          name="arrow-right"
-          size={24}
-          color={theme.colors.white}
+        <Image
+          source={require('../../assets/arrowright.png')}
+          style={{ width: 24, height: 24 }}
         />
         <Text style={styles.text}>Turn On Notification</Text>
       </View>

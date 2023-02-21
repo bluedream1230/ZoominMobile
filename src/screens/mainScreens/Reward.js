@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { Dimensions, StyleSheet, View } from 'react-native'
 import { Text } from 'react-native-paper'
 import Background from '../../components/Background'
 import Header from '../../components/Header'

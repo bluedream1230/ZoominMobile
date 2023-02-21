@@ -10,8 +10,8 @@ import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 
 export default function LoginScreen({ navigation }) {
-  const [email, setEmail] = useState({ value: '', error: '' })
-  const [password, setPassword] = useState({ value: '', error: '' })
+  const [email, setEmail] = useState({ value: 'test@g.com', error: '' })
+  const [password, setPassword] = useState({ value: '123123', error: '' })
 
   const onLoginPressed = () => {
     const emailError = emailValidator(email.value)
