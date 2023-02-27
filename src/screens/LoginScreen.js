@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { TouchableOpacity, StyleSheet, View, Image } from 'react-native'
 import { Text } from 'react-native-paper'
 import Background from '../components/Background'
@@ -8,8 +9,12 @@ import TextInput from '../components/TextInput'
 import { theme } from '../core/theme'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
+import { store } from '../store'
+import { login } from '../services/apis/user'
+import { SET_TOKEN, USERINFO } from '../store/actions'
 
 export default function LoginScreen({ navigation }) {
+  const dispatch = useDispatch()
   const [email, setEmail] = useState({ value: 'test@g.com', error: '' })
   const [password, setPassword] = useState({ value: '123123', error: '' })
 
@@ -21,10 +26,26 @@ export default function LoginScreen({ navigation }) {
       setPassword({ ...password, error: passwordError })
       return
     }
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'Dashboard' }],
-    })
+    onLogin()
+  }
+  const onLogin = async () => {
+    try {
+      const state = store.getState()
+      console.log('state: ', state)
+      const data = await login({
+        email: email.value,
+        password: password.value,
+      })
+      const { access_token } = data
+      dispatch({ type: SET_TOKEN, token: access_token })
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Dashboard' }],
+      })
+      console.log('token: ', data)
+    } catch (e) {
+      console.log({ e })
+    }
   }
 
   return (

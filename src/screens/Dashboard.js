@@ -16,6 +16,13 @@ export default function Dashboard({ navigation }) {
       screenOptions={{
         headerShown: false,
       }}
+      tabBarOptions={{
+        activeBackgroundColor: '#360068',
+        inactiveBackgroundColor: '#36006844',
+        style: {
+          backgroundColor: '#36006844',
+        },
+      }}
     >
       <Tab.Screen
         name="Home"

@@ -1,28 +1,35 @@
 import React from 'react'
 import { Image, StyleSheet, View } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import jwt_decode from 'jwt-decode'
 import { Text } from 'react-native-paper'
 import { Video } from 'expo-av'
 import { theme } from '../../core/theme'
 import Background from '../../components/Background'
 import Button from '../../components/Button'
+import { store } from '../../store'
 
 export default function Home({ navigation }) {
   const video = React.useRef(null)
+  const state = store.getState()
   const [status, setStatus] = React.useState({})
+  const token = useSelector(() => state.auth)
+  const decoded = jwt_decode(token.token)
+  console.log(decoded.name)
   return (
     <Background>
       <Image
         source={require('../../assets/welcome2.png')}
         style={styles.image}
       />
-      <Text style={styles.username}>Player 1</Text>
+      <Text style={styles.username}>{decoded.name}</Text>
       <Text style={styles.ad}>Game Starts In 10 minutes</Text>
       <View style={styles.container}>
         <Video
           ref={video}
           style={styles.video}
           source={{
-            uri: 'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+            uri: decoded.video_url,
           }}
           useNativeControls
           resizeMode="contain"

@@ -47,12 +47,12 @@ export default function Event() {
                 logoBackgroundColor="transparent"
               />
             </View>
-            <Text style={styles.text1}>Event Name: ABC championshipe</Text>
+            <Text style={styles.text1}>Event Name: Admin</Text>
             <Text style={styles.text1}>Event Schedule:</Text>
-            <Text style={styles.text1}>From: 4/Oct/2022 12:00pm</Text>
-            <Text style={styles.text1}>To: 4/Oct/2022 04:00:pm</Text>
-            <Text style={styles.text1}>Location: XYX Stadium</Text>
-            <Text style={styles.text1}>Rewards: 50 Coin</Text>
+            <Text style={styles.text1}>From: 21/12/2022 08:00am</Text>
+            <Text style={styles.text1}>To: 29/12/2022 08:00:am</Text>
+            <Text style={styles.text1}>Location: re</Text>
+            <Text style={styles.text1}>Rewards: 500 Coin</Text>
           </StyleCard>
         </View>
       ) : status.value === 'future' ? (
@@ -61,25 +61,11 @@ export default function Event() {
             <Text style={styles.text1}>Event Name: NBA Mania</Text>
             <Text style={styles.text1}>Date : 10/sep/2022</Text>
             <Text style={styles.text1}>Location : XYX Stadium, NY</Text>
-            <Button
-              labelStyle={{ color: theme.colors.white }}
-              mode="contained"
-              style={styles.ticket}
-            >
-              Buy Tickets
-            </Button>
           </StyleCard>
           <StyleCard style={styles.event}>
             <Text style={styles.text1}>Event Name: NBA Mania</Text>
             <Text style={styles.text1}>Date : 10/sep/2022</Text>
             <Text style={styles.text1}>Location : XYX Stadium, NY</Text>
-            <Button
-              labelStyle={{ color: theme.colors.white }}
-              mode="contained"
-              style={styles.ticket}
-            >
-              Buy Tickets
-            </Button>
           </StyleCard>
         </View>
       ) : null}
