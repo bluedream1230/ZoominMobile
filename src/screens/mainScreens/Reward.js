@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Dimensions, StyleSheet, View, Image } from 'react-native'
+import { Dimensions, StyleSheet, View, Image, ScrollView } from 'react-native'
 import { Text } from 'react-native-paper'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
@@ -42,47 +42,56 @@ export default function Reward() {
       </View>
 
       {status.value === 'store' ? (
-        <View style={styles.preview}>
-          {allRewards &&
-            allRewards
-              .filter((item) => item.type === 'Coupon')
-              .map((item, index) => {
-                return (
-                  <StoreCard
-                    key={index}
-                    label={item.category}
-                    val={item.coinvalue}
-                    url={item.image_url}
-                  />
-                )
-              })}
-        </View>
-      ) : status.value === 'reward' ? (
-        <View style={styles.preview1}>
-          {allRewards &&
-            allRewards
-              .filter((item) => item.type === 'Reward')
-              .map((item, index) => {
-                return (
-                  <StyleCard
-                    key={index}
-                    style={styles.rewardcard}
-                    style1={styles.secstyle}
-                  >
-                    <Text style={styles.text1}>{item.description}</Text>
-                    <Text style={styles.text2}>{item.name}</Text>
-                    <Image
-                      source={{ uri: item.image_url }}
-                      style={{
-                        width: '100%',
-                        height: 14,
-                        backgroundColor: 'transparent',
-                      }}
+        <ScrollView>
+          <View style={styles.preview}>
+            {allRewards &&
+              allRewards
+                .filter((item) => item.type === 'Coupon')
+                .map((item, index) => {
+                  return (
+                    <StoreCard
+                      key={index}
+                      label={item.category}
+                      val={item.coinvalue}
+                      url={item.image_url}
                     />
-                  </StyleCard>
-                )
-              })}
-        </View>
+                  )
+                })}
+          </View>
+        </ScrollView>
+      ) : status.value === 'reward' ? (
+        <ScrollView>
+          <View style={styles.preview1}>
+            {allRewards &&
+              allRewards
+                .filter((item) => item.type === 'Reward')
+                .map((item, index) => {
+                  console.log(item)
+                  return (
+                    <StyleCard
+                      key={index}
+                      style={styles.rewardcard}
+                      style1={styles.secstyle}
+                    >
+                      <Text style={styles.text1}>
+                        {item.description.length < 40
+                          ? `${item.description}`
+                          : `${item.description.substring(0, 37)}...`}
+                      </Text>
+                      <Text style={styles.text2}>{item.name}</Text>
+                      <Image
+                        source={{ uri: item.image_url }}
+                        style={{
+                          width: '100%',
+                          height: 50,
+                          backgroundColor: 'transparent',
+                        }}
+                      />
+                    </StyleCard>
+                  )
+                })}
+          </View>
+        </ScrollView>
       ) : null}
     </Background>
   )
@@ -135,15 +144,16 @@ const styles = StyleSheet.create({
     width: '47%',
     padding: 5,
     marginVertical: 10,
+    display: 'flex',
+    flexDirection: 'row',
   },
   stylecard: {
-    width: '50%',
+    width: '100%',
     padding: 5,
     marginVertical: 10,
   },
   secstyle: {
     width: '100%',
-    height: '100%',
     display: 'flex',
     justifyContent: 'space-around',
   },
@@ -152,6 +162,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#FFFFFF',
     fontWeight: '400',
+    minHeight: 60,
   },
   text2: {
     fontFamily: 'Roboto',
@@ -159,6 +170,7 @@ const styles = StyleSheet.create({
     fontSize: 27,
     lineHeight: 40,
     color: '#FFFFFF',
+    minHeight: 40,
   },
   text3: {
     fontFamily: 'Inter',
