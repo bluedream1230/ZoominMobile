@@ -15,7 +15,6 @@ export default function Home({ navigation }) {
   const [status, setStatus] = React.useState({})
   const token = useSelector(() => state.auth)
   const decoded = jwt_decode(token.token)
-  console.log(decoded.name)
   return (
     <Background>
       <Image

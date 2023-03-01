@@ -11,11 +11,17 @@ import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { store } from '../store'
 import { login } from '../services/apis/user'
-import { SET_TOKEN, USERINFO } from '../store/actions'
+import {
+  GET_ATTENDS,
+  GET_EVENTS,
+  GET_REWARDS,
+  SET_TOKEN,
+} from '../store/actions'
+import { getAttends, getEvents, getRewards } from '../services/apis/server'
 
 export default function LoginScreen({ navigation }) {
   const dispatch = useDispatch()
-  const [email, setEmail] = useState({ value: 'test@g.com', error: '' })
+  const [email, setEmail] = useState({ value: 'test@test.com', error: '' })
   const [password, setPassword] = useState({ value: '123123', error: '' })
 
   const onLoginPressed = () => {
@@ -31,18 +37,22 @@ export default function LoginScreen({ navigation }) {
   const onLogin = async () => {
     try {
       const state = store.getState()
-      console.log('state: ', state)
       const data = await login({
         email: email.value,
         password: password.value,
       })
       const { access_token } = data
       dispatch({ type: SET_TOKEN, token: access_token })
+      const allReward = await getRewards()
+      dispatch({ type: GET_REWARDS, rewards: allReward })
+      const allEvent = await getEvents()
+      dispatch({ type: GET_EVENTS, events: allEvent })
+      const allAttend = await getAttends()
+      dispatch({ type: GET_ATTENDS, attends: allAttend })
       navigation.reset({
         index: 0,
         routes: [{ name: 'Dashboard' }],
       })
-      console.log('token: ', data)
     } catch (e) {
       console.log({ e })
     }

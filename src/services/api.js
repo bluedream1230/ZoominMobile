@@ -1,6 +1,7 @@
 // import { onApplicationError } from 'actions/application.action';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 import isString from 'lodash/isString'
+import { isMobile } from 'react-device-detect'
 import { store } from '../store'
 
 class Api {
@@ -85,9 +86,12 @@ class Api {
       ) {
         headers.Authorization = `Bearer ${state.auth.token}`
       }
+      // const baseURL = isMobile
+      //   ? 'http://10.0.2.2:3000'
+      //   : 'http://localhost:3000'
 
       const options = {
-        baseURL: 'http://10.0.2.2:3000',
+        baseURL: 'http://localhost:3000',
         url,
         method,
         headers,

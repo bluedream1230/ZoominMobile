@@ -1,4 +1,5 @@
 import React from 'react'
+// import { Image } from 'expo-image'
 import { StyleSheet, View, Image } from 'react-native'
 import { Text, Avatar, Button, Card } from 'react-native-paper'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
@@ -19,7 +20,7 @@ export default function StoreCard({ label, url, val }) {
         </View>
       </View>
       <View style={styles.mainbackground}>
-        <Image source={url} style={styles.storeAvatar} />
+        <Image source={{ uri: url }} style={styles.storeAvatar} />
       </View>
       <Button style={styles.storebutton} labelStyle={styles.text}>
         Redeem Now
@@ -66,8 +67,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   storeAvatar: {
-    // width: 50,
-    // height: 50,
+    width: 50,
+    height: 50,
     backgroundColor: theme.colors.transparent,
   },
   mainbackground: {

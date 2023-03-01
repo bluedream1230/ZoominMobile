@@ -31,9 +31,10 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   text: {
-    paddingLeft: 10,
-    fontSize: 20,
+    paddingLeft: 20,
+    fontSize: 16,
     color: '#FFFFFF',
-    fontWeight: '500',
+    fontWeight: '700',
+    lineHeight: '20px',
   },
 })

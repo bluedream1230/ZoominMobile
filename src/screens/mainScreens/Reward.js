@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Dimensions, StyleSheet, View } from 'react-native'
+import { Dimensions, StyleSheet, View, Image } from 'react-native'
 import { Text } from 'react-native-paper'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
@@ -7,9 +7,12 @@ import Button from '../../components/Button'
 import { theme } from '../../core/theme'
 import StoreCard from '../../components/StoreCard'
 import StyleCard from '../../components/StyledCard'
+import { store } from '../../store'
 
 export default function Reward() {
+  const state = store.getState()
   const [status, setStatus] = useState({ value: 'store' })
+  const allRewards = state.campaign.rewards
   return (
     <Background type="main">
       <Header label="Redeem" icon={require('../../assets/reward.png')} />
@@ -40,46 +43,45 @@ export default function Reward() {
 
       {status.value === 'store' ? (
         <View style={styles.preview}>
-          <StoreCard
-            label="Television"
-            val="12"
-            url={require('../../assets/storeicons/television.png')}
-          />
-          <StoreCard
-            label="Sneakers"
-            val="20"
-            url={require('../../assets/storeicons/sneakers.png')}
-          />
-          <StoreCard
-            label="Speakers"
-            val="14"
-            url={require('../../assets/storeicons/speakers.png')}
-          />
-          <StoreCard
-            label="Apparel"
-            val="28"
-            url={require('../../assets/storeicons/apparel.png')}
-          />
-          <StoreCard
-            label="Gadgets"
-            val="12"
-            url={require('../../assets/storeicons/gadgets.png')}
-          />
-          <StoreCard
-            label="Restaurant Vouchers"
-            val="20"
-            url={require('../../assets/storeicons/vouchers.png')}
-          />
+          {allRewards &&
+            allRewards
+              .filter((item) => item.type === 'Coupon')
+              .map((item, index) => {
+                return (
+                  <StoreCard
+                    key={index}
+                    label={item.category}
+                    val={item.coinvalue}
+                    url={item.image_url}
+                  />
+                )
+              })}
         </View>
       ) : status.value === 'reward' ? (
-        <View style={styles.rewardcard}>
-          <StyleCard>
-            <Text style={styles.text1}>
-              Happy ST.Patrick's Day Enjoy Free Drink On US!
-            </Text>
-            <Text style={styles.text2}>20% OFF</Text>
-            <Text style={styles.text3}>On Extra Beverages*</Text>
-          </StyleCard>
+        <View style={styles.preview1}>
+          {allRewards &&
+            allRewards
+              .filter((item) => item.type === 'Reward')
+              .map((item, index) => {
+                return (
+                  <StyleCard
+                    key={index}
+                    style={styles.rewardcard}
+                    style1={styles.secstyle}
+                  >
+                    <Text style={styles.text1}>{item.description}</Text>
+                    <Text style={styles.text2}>{item.name}</Text>
+                    <Image
+                      source={{ uri: item.image_url }}
+                      style={{
+                        width: '100%',
+                        height: 14,
+                        backgroundColor: 'transparent',
+                      }}
+                    />
+                  </StyleCard>
+                )
+              })}
         </View>
       ) : null}
     </Background>
@@ -123,8 +125,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
+  preview1: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
   rewardcard: {
+    width: '47%',
+    padding: 5,
+    marginVertical: 10,
+  },
+  stylecard: {
     width: '50%',
+    padding: 5,
+    marginVertical: 10,
+  },
+  secstyle: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'space-around',
   },
   text1: {
     fontFamily: 'Inter',
