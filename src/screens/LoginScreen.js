@@ -21,8 +21,11 @@ import { getAttends, getEvents, getRewards } from '../services/apis/server'
 
 export default function LoginScreen({ navigation }) {
   const dispatch = useDispatch()
-  const [email, setEmail] = useState({ value: 'test@test.com', error: '' })
-  const [password, setPassword] = useState({ value: '123123', error: '' })
+  const [email, setEmail] = useState({
+    value: 'fullstack921230@gmail.com',
+    error: '',
+  })
+  const [password, setPassword] = useState({ value: '', error: '' })
 
   const onLoginPressed = () => {
     const emailError = emailValidator(email.value)
@@ -58,6 +61,15 @@ export default function LoginScreen({ navigation }) {
     }
   }
 
+  const onForgotPass = () => {
+    const emailError = emailValidator(email.value)
+    if (email.value && !emailError) {
+      navigation.navigate('ResetPasswordScreen', { useremail: email.value })
+    } else {
+      setEmail({ ...email, error: emailError })
+    }
+  }
+
   return (
     <Background>
       <Logo />
@@ -86,9 +98,7 @@ export default function LoginScreen({ navigation }) {
         icon={require('../assets/lock.png')}
       />
       <View style={styles.forgotPassword}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('ResetPasswordScreen')}
-        >
+        <TouchableOpacity onPress={onForgotPass}>
           <Text style={styles.forgot}>Forgot password?</Text>
         </TouchableOpacity>
       </View>
@@ -96,7 +106,7 @@ export default function LoginScreen({ navigation }) {
         Login
       </Button>
       <View style={styles.row}>
-        <Text>Don’t have an account? </Text>
+        <Text style={styles.text}>Don’t have an account? </Text>
         <TouchableOpacity onPress={() => navigation.replace('RegisterScreen')}>
           <Text style={styles.link}>Sign up</Text>
         </TouchableOpacity>
@@ -118,6 +128,9 @@ const styles = StyleSheet.create({
   },
   forgot: {
     fontSize: 13,
+    color: theme.colors.white,
+  },
+  text: {
     color: theme.colors.white,
   },
   link: {

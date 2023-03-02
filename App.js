@@ -12,6 +12,7 @@ import {
   ResetPasswordScreen,
   CreateNewPassword,
   Dashboard,
+  VerifyScreen,
 } from './src/screens'
 import { persistor, store } from './src/store'
 
@@ -39,6 +40,7 @@ export default function App() {
               name="CreateNewPassword"
               component={CreateNewPassword}
             />
+            <Stack.Screen name="VerifyScreen" component={VerifyScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </PersistGate>

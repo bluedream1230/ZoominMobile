@@ -112,46 +112,5 @@ class Api {
     }
     return sendRequest(axios.create())
   }
-
-  // static uploadFile(route, data, params, files) {
-  //   const state = store.getState()
-  //   console.log('apidata:', route, data, params, files)
-
-  //   const sendRequest = (axiosInstance) => {
-  //     const url = Api.replaceVariables(route, params)
-  //     const headers = {
-  //       'Content-Type': 'multipart/form-data',
-  //     }
-
-  //     if (state.auth.token) {
-  //       headers.Authorization = `Bearer ${state.auth.token}`
-  //     }
-
-  //     var formData = new FormData()
-  //     for (const file of files) {
-  //       console.log('file::', file)
-  //       // formData.append('file', file);
-  //       formData.append('file[]', file)
-  //     }
-  //     console.log('formdata:', formData)
-  //     Object.keys(data).forEach((key) => formData.append(key, data[key]))
-
-  //     const options = {
-  //       baseURL: process.env.REACT_APP_API_URL,
-  //       url,
-  //       method: 'post',
-  //       headers,
-  //       timeout: 30000,
-  //       data: formData,
-  //     }
-
-  //     return axiosInstance(options)
-  //       .then((res) => res.data)
-  //       .catch((err) => {
-  //         return Api.wrapApiErrors(err)
-  //       })
-  //   }
-  //   return sendRequest(axios.create())
-  // }
 }
 export default Api

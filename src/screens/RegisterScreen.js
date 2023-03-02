@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { View, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import { Text } from 'react-native-paper'
 import Background from '../components/Background'
@@ -8,31 +9,50 @@ import { theme } from '../core/theme'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
+import { signup } from '../services/apis/user'
+import { confirmValidator } from '../helpers/confirmValidator'
 
 export default function RegisterScreen({ navigation }) {
+  const dispatch = useDispatch()
   const [name, setName] = useState({ value: '', error: '' })
-  const [birth, setBirth] = useState({ value: '', error: '' })
+  const [lastname, setLastname] = useState({ value: '', error: '' })
   const [email, setEmail] = useState({ value: '', error: '' })
-  const [username, setUsername] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
+  const [confirm, setConfirm] = useState({ value: '', error: '' })
 
   const onSignUpPressed = () => {
     const nameError = nameValidator(name.value)
-    // const birthError = nameValidator(birth.value)
+    const lastnameError = nameValidator(lastname.value)
     const emailError = emailValidator(email.value)
-    const usernameError = nameValidator(username.value)
     const passwordError = passwordValidator(password.value)
-    if (emailError || passwordError || nameError || usernameError) {
+    const confirmError = confirmValidator(password.value, confirm.value)
+    if (emailError || passwordError || nameError || lastname || confirmError) {
       setName({ ...name, error: nameError })
+      setLastname({ ...lastname, error: lastnameError })
       setEmail({ ...email, error: emailError })
       setPassword({ ...password, error: passwordError })
-      setUsername({ ...username, error: usernameError })
-      return
+      setConfirm({ ...confirm, error: confirmError })
     }
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'Dashboard' }],
-    })
+    onSignup()
+  }
+
+  const onSignup = async () => {
+    try {
+      const data = await signup({
+        email: email.value,
+        name: name.value,
+        lastname: lastname.value,
+        password: password.value,
+        type: 'fan',
+      })
+      console.log('Data', data)
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'LoginScreen' }],
+      })
+    } catch (e) {
+      console.log({ e })
+    }
   }
 
   return (
@@ -48,13 +68,13 @@ export default function RegisterScreen({ navigation }) {
         icon={require('../assets/user-edit.png')}
       />
       <TextInput
-        label="Date of Birth*"
+        label="Last Name*"
         returnKeyType="next"
-        value={birth.value}
-        onChangeText={(text) => setBirth({ value: text, error: '' })}
-        error={!!birth.error}
-        errorText={birth.error}
-        icon={require('../assets/calendar.png')}
+        value={lastname.value}
+        onChangeText={(text) => setLastname({ value: text, error: '' })}
+        error={!!lastname.error}
+        errorText={lastname.error}
+        icon={require('../assets/user.png')}
       />
       <TextInput
         label="Email*"
@@ -70,21 +90,22 @@ export default function RegisterScreen({ navigation }) {
         icon={require('../assets/sms-tracking.png')}
       />
       <TextInput
-        label="User Name*"
-        returnKeyType="next"
-        value={username.value}
-        onChangeText={(text) => setUsername({ value: text, error: '' })}
-        error={!!username.error}
-        errorText={username.error}
-        icon={require('../assets/user.png')}
-      />
-      <TextInput
         label="Password*"
         returnKeyType="done"
         value={password.value}
         onChangeText={(text) => setPassword({ value: text, error: '' })}
         error={!!password.error}
         errorText={password.error}
+        secureTextEntry
+        icon={require('../assets/lock.png')}
+      />
+      <TextInput
+        label="Confirm Password*"
+        returnKeyType="done"
+        value={confirm.value}
+        onChangeText={(text) => setConfirm({ value: text, error: '' })}
+        error={!!confirm.error}
+        errorText={confirm.error}
         secureTextEntry
         icon={require('../assets/lock.png')}
       />

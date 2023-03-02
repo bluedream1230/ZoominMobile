@@ -6,17 +6,39 @@ import Background from '../components/Background'
 import TextInput from '../components/TextInput'
 import Button from '../components/Button'
 import { emailValidator } from '../helpers/emailValidator'
+import { useremailValidator } from '../helpers/useremailValidator'
+import { resetPassword } from '../services/apis/user'
 
-export default function ResetPasswordScreen({ navigation }) {
+export default function ResetPasswordScreen({ route, navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' })
+  const { useremail } = route.params
 
   const sendEmailRequest = () => {
     const emailError = emailValidator(email.value)
+    const useremailError = useremailValidator(email.value, useremail)
     if (emailError) {
       setEmail({ ...email, error: emailError })
       return
     }
-    navigation.navigate('CreateNewPassword')
+    if (useremailError) {
+      setEmail({ ...email, error: useremailError })
+      return
+    }
+    onReset()
+  }
+
+  const onReset = async () => {
+    try {
+      const data = await resetPassword({
+        email: email.value,
+      })
+      navigation.navigate('VerifyScreen', {
+        verifynumber: data.verifynumber,
+        email: email.value,
+      })
+    } catch (e) {
+      console.log({ e })
+    }
   }
 
   return (

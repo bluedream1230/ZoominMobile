@@ -6,20 +6,38 @@ import Background from '../components/Background'
 import TextInput from '../components/TextInput'
 import Button from '../components/Button'
 import { passwordValidator } from '../helpers/passwordValidator'
+import { confirmValidator } from '../helpers/confirmValidator'
+import { updatePass } from '../services/apis/user'
 
-export default function CreateNewPassword({ navigation }) {
+export default function CreateNewPassword({ route, navigation }) {
   const [password, setPassword] = useState({ value: '', error: '' })
-  const [confirmpass, setConfirmpass] = useState({ value: '', error: '' })
-
+  const [confirm, setConfirm] = useState({ value: '', error: '' })
+  const { useremail } = route.params
   const sendResetPasswordEmail = () => {
     const passwordError = passwordValidator(password.value)
-    const confirmpasswordError = passwordValidator(confirmpass.value)
-    if (passwordError || confirmpasswordError) {
+    const confirmError = confirmValidator(password.value, confirm.value)
+    if (passwordError || confirmError) {
       setPassword({ ...password, error: passwordError })
-      setConfirmpass({ ...confirmpass, error: confirmpasswordError })
+      setConfirm({ ...confirm, error: confirmError })
       return
     }
-    navigation.navigate('LoginScreen')
+    onUpdate()
+  }
+
+  const onUpdate = async () => {
+    try {
+      const data = await updatePass({
+        email: useremail,
+        password: password.value,
+      })
+      console.log('Data', data)
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'LoginScreen' }],
+      })
+    } catch (e) {
+      console.log({ e })
+    }
   }
 
   return (
@@ -44,10 +62,10 @@ export default function CreateNewPassword({ navigation }) {
       <TextInput
         label="Confirm Password*"
         returnKeyType="done"
-        value={confirmpass.value}
-        onChangeText={(text) => setConfirmpass({ value: text, error: '' })}
-        error={!!confirmpass.error}
-        errorText={confirmpass.error}
+        value={confirm.value}
+        onChangeText={(text) => setConfirm({ value: text, error: '' })}
+        error={!!confirm.error}
+        errorText={confirm.error}
         secureTextEntry
         icon={require('../assets/lock.png')}
       />
