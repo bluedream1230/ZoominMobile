@@ -8,6 +8,7 @@ import { theme } from '../../core/theme'
 import Background from '../../components/Background'
 import Button from '../../components/Button'
 import { store } from '../../store'
+import { Linking } from 'expo'
 
 export default function Home({ navigation }) {
   const video = React.useRef(null)
@@ -34,6 +35,10 @@ export default function Home({ navigation }) {
     video_url = futureEvent[0].sponsor_video_url
     game_url = futureEvent[0].url
   }
+  const onGameJoin = () => {
+    Linking.openURL({ game_url })
+  }
+
   return (
     <Background>
       <Image
@@ -55,7 +60,7 @@ export default function Home({ navigation }) {
           onPlaybackStatusUpdate={(s) => setStatus(() => s)}
         />
       </View>
-      <Button mode="contained" style={{ marginTop: 16 }}>
+      <Button mode="contained" style={{ marginTop: 16 }} onPress={onGameJoin}>
         Join Now
       </Button>
       <Text style={styles.footer}>Get warmed up while you wait!</Text>
