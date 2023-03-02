@@ -13,8 +13,27 @@ export default function Home({ navigation }) {
   const video = React.useRef(null)
   const state = store.getState()
   const [status, setStatus] = React.useState({})
+  const allEvents = state.campaign.events
+  const today = new Date()
+  console.log(allEvents)
+  const futureEvent = allEvents
+    .filter((item) => new Date(item.start_time).getTime() >= today.getTime())
+    .sort((p1, p2) =>
+      p1.start_time < p2.start_time ? 1 : p1.price > p2.price ? -1 : 0
+    )
   const token = useSelector(() => state.auth)
   const decoded = jwt_decode(token.token)
+  let duration = 0
+  let video_url = ''
+  let game_url = ''
+  if (futureEvent.length > 0) {
+    duration = Math.floor(
+      (new Date(futureEvent[0].start_time).getTime() - today.getTime()) /
+        (1000 * 60)
+    )
+    video_url = futureEvent[0].sponsor_video_url
+    game_url = futureEvent[0].url
+  }
   return (
     <Background>
       <Image
@@ -22,13 +41,13 @@ export default function Home({ navigation }) {
         style={styles.image}
       />
       <Text style={styles.username}>{decoded.name}</Text>
-      <Text style={styles.ad}>Game Starts In 10 minutes</Text>
+      <Text style={styles.ad}>Game Starts In {duration} minutes</Text>
       <View style={styles.container}>
         <Video
           ref={video}
           style={styles.video}
           source={{
-            uri: decoded.video_url,
+            uri: video_url,
           }}
           useNativeControls
           resizeMode="contain"
