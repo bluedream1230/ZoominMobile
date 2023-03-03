@@ -36,6 +36,7 @@ export default function Home({ navigation }) {
     game_url = futureEvent[0].url
   }
   const onGameJoin = () => {
+    console.log(game_url)
     Linking.openURL({ game_url })
   }
 
@@ -60,9 +61,11 @@ export default function Home({ navigation }) {
           onPlaybackStatusUpdate={(s) => setStatus(() => s)}
         />
       </View>
-      <Button mode="contained" style={{ marginTop: 16 }} onPress={onGameJoin}>
-        Join Now
-      </Button>
+      <a href={game_url} style={{ textDecoration: 'none' }}>
+        <Button mode="contained" style={{ marginTop: 16 }} onPress={onGameJoin}>
+          Join Now
+        </Button>
+      </a>
       <Text style={styles.footer}>Get warmed up while you wait!</Text>
     </Background>
   )
