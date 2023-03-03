@@ -61,7 +61,7 @@ export default function Home({ navigation }) {
           onPlaybackStatusUpdate={(s) => setStatus(() => s)}
         />
       </View>
-      <a href={game_url} style={{ textDecoration: 'none' }}>
+      <a href={game_url} style={{ textDecoration: 'none', width: '100%' }}>
         <Button mode="contained" style={{ marginTop: 16 }} onPress={onGameJoin}>
           Join Now
         </Button>

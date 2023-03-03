@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.buttonColor,
   },
   text: {
+    fontStyle: 'normal',
     fontFamily: 'Inter',
     fontWeight: '700',
     fontSize: 20,
