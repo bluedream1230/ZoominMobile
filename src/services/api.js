@@ -91,7 +91,7 @@ class Api {
       //   : 'http://localhost:3000'
 
       const options = {
-        baseURL: 'http://localhost:3000',
+        baseURL: 'http://play.zoomingaming.com',
         url,
         method,
         headers,
