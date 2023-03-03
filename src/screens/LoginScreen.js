@@ -22,7 +22,7 @@ import { getAttends, getEvents, getRewards } from '../services/apis/server'
 export default function LoginScreen({ navigation }) {
   const dispatch = useDispatch()
   const [email, setEmail] = useState({
-    value: 'fullstack921230@gmail.com',
+    value: '',
     error: '',
   })
   const [password, setPassword] = useState({ value: '', error: '' })
