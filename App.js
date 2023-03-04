@@ -21,7 +21,7 @@ const Stack = createStackNavigator()
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    Inter: require('./assets/Inter.woff'),
+    Inter: require('./src/assets/Inter.woff'),
   })
   return (
     <Provider theme={theme} store={store}>
