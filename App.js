@@ -15,10 +15,14 @@ import {
   VerifyScreen,
 } from './src/screens'
 import { persistor, store } from './src/store'
+import { useFonts } from 'expo-font'
 
 const Stack = createStackNavigator()
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Inter: require('./assets/Inter.woff'),
+  })
   return (
     <Provider theme={theme} store={store}>
       <PersistGate loading={null} persistor={persistor}>

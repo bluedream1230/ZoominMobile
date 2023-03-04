@@ -20,6 +20,7 @@
     "buffer": "^6.0.3",
     "expo": "^40.0.0",
     "expo-av": "9.2.3",
+    "expo-font": "^11.1.1",
     "expo-image": "^1.0.0",
     "expo-linking": "^4.0.1",
     "expo-modules-core": "0.13.4",
