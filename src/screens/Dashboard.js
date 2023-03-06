@@ -24,7 +24,7 @@ export default function Dashboard({ navigation }) {
         },
       }}
     >
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Home"
         component={Home}
         options={{
@@ -36,7 +36,7 @@ export default function Dashboard({ navigation }) {
             />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Setting"
         component={Setting}

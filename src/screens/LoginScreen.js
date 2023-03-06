@@ -54,7 +54,7 @@ export default function LoginScreen({ navigation }) {
       dispatch({ type: GET_ATTENDS, attends: allAttend })
       navigation.reset({
         index: 0,
-        routes: [{ name: 'Dashboard' }],
+        routes: [{ name: 'Welcome' }],
       })
     } catch (e) {
       console.log({ e })

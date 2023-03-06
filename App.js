@@ -13,6 +13,7 @@ import {
   CreateNewPassword,
   Dashboard,
   VerifyScreen,
+  Welcome,
 } from './src/screens'
 import { persistor, store } from './src/store'
 import { useFonts } from 'expo-font'
@@ -45,6 +46,7 @@ export default function App() {
               component={CreateNewPassword}
             />
             <Stack.Screen name="VerifyScreen" component={VerifyScreen} />
+            <Stack.Screen name="Welcome" component={Welcome} />
           </Stack.Navigator>
         </NavigationContainer>
       </PersistGate>
