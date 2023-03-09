@@ -56,7 +56,7 @@ export default function Welcome({ navigation }) {
     }
     console.log('111111111')
     const getPlayerlist = Api.post(
-      'https://saviour.earth/Zoomin/api/Index.php/Player/get_players?event_id=' +
+      'https://app.zoomingaming.com/api/Index.php/Player/get_players?event_id=' +
         eventid
     )
     console.log('getPlayerlist', getPlayerlist)
@@ -85,7 +85,8 @@ export default function Welcome({ navigation }) {
               if (!s.isPlaying && play) {
                 if (!play_flag) {
                   Linking.openURL(
-                    'https://saviour.earth/ZoomIn?event_id=' + eventid
+                    'https://app.zoomingaming.com/login.html?event_id=' +
+                      eventid
                   )
                 }
               } else {

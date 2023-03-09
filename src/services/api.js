@@ -81,7 +81,7 @@ class Api {
       }
       if (
         route !==
-          'https://saviour.earth/ZoomIn/api/index.php/Trivia/addTrivia' &&
+          'https://app.zoomingaming.com/api/index.php/Trivia/addTrivia' &&
         state.auth.token
       ) {
         headers.Authorization = `Bearer ${state.auth.token}`
