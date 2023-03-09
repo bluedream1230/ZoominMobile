@@ -16,6 +16,8 @@ import { createAttend, getAttends, getEvents } from '../services/apis/server'
 
 export default function LoginScreen({ navigation }) {
   const dispatch = useDispatch()
+  const params = new URLSearchParams(window.location.search)
+  const eventid = params.get('event_id')
   const [email, setEmail] = useState({
     value: '',
     error: '',
@@ -46,10 +48,14 @@ export default function LoginScreen({ navigation }) {
       dispatch({ type: GET_EVENTS, events: allEvent })
       const allAttend = await getAttends()
       dispatch({ type: GET_ATTENDS, attends: allAttend })
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'Welcome' }],
-      })
+      if (eventid) {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Welcome' }],
+        })
+      } else {
+        navigation.navigate('Dashboard')
+      }
     } catch (e) {
       console.log({ e })
     }
