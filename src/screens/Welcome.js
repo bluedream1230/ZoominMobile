@@ -48,8 +48,8 @@ export default function Welcome({ navigation }) {
     dispatch({ type: GET_REWARDS, rewards: futureEvent[0].rewards })
     try {
       const attend = await createAttend({
-        user_id: decoded.id,
-        event_id: eventid,
+        user_id: Number(decoded.id),
+        event_id: Number(eventid),
       })
     } catch (e) {
       console.log(e)
