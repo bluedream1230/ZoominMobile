@@ -23,6 +23,7 @@ const Stack = createStackNavigator()
 export default function App() {
   const [fontsLoaded] = useFonts({
     Inter: require('./src/assets/Inter.woff'),
+    Roboto: require('./src/assets/Roboto-Regular.ttf'),
   })
   return (
     <Provider theme={theme} store={store}>
