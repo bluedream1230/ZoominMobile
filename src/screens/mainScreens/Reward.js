@@ -13,6 +13,7 @@ export default function Reward() {
   const state = store.getState()
   const [status, setStatus] = useState({ value: 'store' })
   const allRewards = state.campaign.rewards
+  console.log('rewardsdssss', allRewards)
   return (
     <Background type="main">
       <Header label="Redeem" icon={require('../../assets/reward.png')} />
