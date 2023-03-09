@@ -9,19 +9,27 @@ import Background from '../components/Background'
 import Button from '../components/Button'
 import { store } from '../store'
 import { Linking } from 'expo'
+import { GET_REWARDS } from '../store/actions'
+import { createAttend } from '../services/apis/server'
+import Api from '../services/api'
 
 export default function Welcome({ navigation }) {
+  const dispatch = useDispatch()
   const video = React.useRef(null)
   const state = store.getState()
   const [status, setStatus] = React.useState({})
+  const [play, setPlay] = React.useState(false)
   const allEvents = state.campaign.events
   const today = new Date()
+  const params = new URLSearchParams(window.location.search)
+  const eventid = params.get('event_id')
+  const play_flag = params.get('play_flag')
+  console.log('event_id : ', eventid)
   console.log(allEvents)
-  const futureEvent = allEvents
-    .filter((item) => new Date(item.start_time).getTime() >= today.getTime())
-    .sort((p1, p2) =>
-      p1.start_time < p2.start_time ? 1 : p1.price > p2.price ? -1 : 0
-    )
+  const futureEvent = allEvents.filter(
+    (item) => Number(item.id) === Number(eventid)
+  )
+  console.log('futureEvent:', futureEvent)
   const token = useSelector(() => state.auth)
   const decoded = jwt_decode(token.token)
   let duration = 0
@@ -35,8 +43,24 @@ export default function Welcome({ navigation }) {
     video_url = futureEvent[0].sponsor_video_url
     game_url = futureEvent[0].url
   }
-  const onGameJoin = () => {
+  const onGameJoin = async () => {
     console.log(game_url)
+    dispatch({ type: GET_REWARDS, rewards: futureEvent[0].rewards })
+    try {
+      const attend = await createAttend({
+        user_id: decoded.id,
+        event_id: eventid,
+      })
+    } catch (e) {
+      console.log(e)
+    }
+    console.log('111111111')
+    const getPlayerlist = Api.post(
+      'https://saviour.earth/Zoomin/api/Index.php/Player/get_players?event_id=' +
+        eventid
+    )
+    console.log('getPlayerlist', getPlayerlist)
+    console.log('2222222222')
     navigation.navigate('Dashboard')
     // Linking.openURL({ game_url })
   }
@@ -53,10 +77,25 @@ export default function Welcome({ navigation }) {
           source={{
             uri: video_url,
           }}
+          shouldPlay
           useNativeControls
           resizeMode="contain"
-          isLooping
-          onPlaybackStatusUpdate={(s) => setStatus(() => s)}
+          onPlaybackStatusUpdate={(s) =>
+            setStatus(() => {
+              if (!s.isPlaying && play) {
+                if (!play_flag) {
+                  Linking.openURL(
+                    'http://saviour.earth/Zoomin/dashboard.html?event_id=' +
+                      eventid
+                  )
+                }
+              } else {
+                setTimeout(() => {
+                  setPlay(true)
+                }, 3000)
+              }
+            })
+          }
         />
       </View>
       {/* <a href={game_url} style={{ textDecoration: 'none', width: '100%' }}> */}

@@ -11,13 +11,8 @@ import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { store } from '../store'
 import { login } from '../services/apis/user'
-import {
-  GET_ATTENDS,
-  GET_EVENTS,
-  GET_REWARDS,
-  SET_TOKEN,
-} from '../store/actions'
-import { getAttends, getEvents, getRewards } from '../services/apis/server'
+import { GET_ATTENDS, GET_EVENTS, SET_TOKEN } from '../store/actions'
+import { createAttend, getAttends, getEvents } from '../services/apis/server'
 
 export default function LoginScreen({ navigation }) {
   const dispatch = useDispatch()
@@ -46,8 +41,7 @@ export default function LoginScreen({ navigation }) {
       })
       const { access_token } = data
       dispatch({ type: SET_TOKEN, token: access_token })
-      const allReward = await getRewards()
-      dispatch({ type: GET_REWARDS, rewards: allReward })
+
       const allEvent = await getEvents()
       dispatch({ type: GET_EVENTS, events: allEvent })
       const allAttend = await getAttends()

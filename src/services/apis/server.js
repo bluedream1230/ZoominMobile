@@ -16,3 +16,7 @@ export const getEvents = async () => {
 export const getAttends = async () => {
   return Api.get(API_GET_ATTENDS)
 }
+
+export const createAttend = async (data) => {
+  return Api.post(API_GET_ATTENDS, data)
+}
