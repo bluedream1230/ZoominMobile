@@ -55,11 +55,11 @@ export default function Welcome({ navigation }) {
       console.log(e)
     }
     console.log('111111111')
-    const getPlayerlist = Api.post(
-      'https://app.zoomingaming.com/api/Index.php/Player/get_players?event_id=' +
-        eventid
-    )
-    console.log('getPlayerlist', getPlayerlist)
+    // const getPlayerlist = Api.post(
+    //   'https://app.zoomingaming.com/api/Index.php/Player/get_players?event_id=' +
+    //     eventid
+    // )
+    // console.log('getPlayerlist', getPlayerlist)
     console.log('2222222222')
     navigation.navigate('Dashboard')
     // Linking.openURL({ game_url })
