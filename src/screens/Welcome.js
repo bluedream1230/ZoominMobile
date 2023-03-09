@@ -85,8 +85,7 @@ export default function Welcome({ navigation }) {
               if (!s.isPlaying && play) {
                 if (!play_flag) {
                   Linking.openURL(
-                    'http://saviour.earth/Zoomin/dashboard.html?event_id=' +
-                      eventid
+                    'https://saviour.earth/ZoomIn?event_id=' + eventid
                   )
                 }
               } else {
