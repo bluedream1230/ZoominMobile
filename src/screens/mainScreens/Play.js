@@ -20,7 +20,7 @@ export default function Play() {
 
       <View style={styles.contain}>
         <Button
-          labelStyle={{ color: theme.colors.white, fontSize: 16 }}
+          labelStyle={{ color: theme.colors.white }}
           mode={status.value === 'playground' ? 'contained' : 'outlined'}
           style={
             status.value === 'playground'
