@@ -10,7 +10,7 @@ import Button from '../components/Button'
 import { store } from '../store'
 import { Linking } from 'expo'
 import { GET_REWARDS } from '../store/actions'
-import { createAttend } from '../services/apis/server'
+import { createAttend, updateAttend } from '../services/apis/server'
 import Api from '../services/api'
 
 export default function Welcome({ navigation }) {
@@ -50,8 +50,22 @@ export default function Welcome({ navigation }) {
       const attend = await createAttend({
         user_id: Number(decoded.id),
         event_id: Number(eventid),
+        score: 0,
       })
     } catch (e) {
+      try {
+        const attend = await updateAttend(
+          {
+            user_id: Number(decoded.id),
+            event_id: Number(eventid),
+            score: 0,
+          },
+          eventid,
+          decoded.id
+        )
+      } catch (err) {
+        console.log(err)
+      }
       console.log(e)
     }
     console.log('111111111')

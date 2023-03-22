@@ -3,6 +3,7 @@ import {
   API_GET_ATTENDS,
   API_GET_EVENTS,
   API_GET_REWARDS,
+  API_UPDATE_ATTENDS,
 } from '../../store/api'
 
 export const getRewards = async () => {
@@ -19,4 +20,8 @@ export const getAttends = async () => {
 
 export const createAttend = async (data) => {
   return Api.post(API_GET_ATTENDS, data)
+}
+
+export const updateAttend = async (data, eventId, id) => {
+  return Api.post(API_UPDATE_ATTENDS, data, { eventId, id })
 }

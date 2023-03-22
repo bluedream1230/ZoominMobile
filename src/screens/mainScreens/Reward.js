@@ -67,7 +67,7 @@ export default function Reward() {
               allRewards
                 .filter((item) => item.type === 'Reward')
                 .map((item, index) => {
-                  console.log(item)
+                  console.log('item', item)
                   return (
                     <StyleCard
                       key={index}
