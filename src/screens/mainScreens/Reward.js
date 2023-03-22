@@ -45,8 +45,8 @@ export default function Reward() {
       {status.value === 'store' ? (
         <ScrollView>
           <View style={styles.preview}>
-            {allRewards &&
-              allRewards
+            {allRewards[0] &&
+              allRewards[0]
                 .filter((item) => item.type === 'Coupon')
                 .map((item, index) => {
                   return (
@@ -63,8 +63,8 @@ export default function Reward() {
       ) : status.value === 'reward' ? (
         <ScrollView>
           <View style={styles.preview1}>
-            {allRewards &&
-              allRewards
+            {allRewards[0] &&
+              allRewards[0]
                 .filter((item) => item.type === 'Reward')
                 .map((item, index) => {
                   console.log('item', item)
