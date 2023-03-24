@@ -1,94 +1,174 @@
 import React, { useEffect, useState } from 'react'
-import { Image, View } from 'react-native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
-import Ionicons from '@expo/vector-icons/Ionicons'
-import { Foundation } from '@expo/vector-icons'
+import { Image, View, Button, StyleSheet } from 'react-native'
+import { Text } from 'react-native-paper'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 
-import { Home, Setting, Reward, Event, Play } from './mainScreens'
-import { theme } from '../core/theme'
+import { Setting, Reward, Event, Play, Profile } from './mainScreens'
 
-const Tab = createBottomTabNavigator()
+const Drawer = createDrawerNavigator()
 
-export default function Dashboard({ navigation }) {
+function MyDrawer() {
   return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
+    // <BlurView style={{ flex: 1 }} blurType="light" blurAmount={7}>
+    <Drawer.Navigator
+      drawerStyle={{
+        backgroundColor: '#221343e6',
+        borderColor: '#3A3A3A',
+        borderWidth: 1,
+        borderStyle: 'solid',
+        width: 220,
       }}
-      tabBarOptions={{
-        activeBackgroundColor: '#360068',
-        inactiveBackgroundColor: '#36006844',
-        style: {
-          backgroundColor: '#36006844',
-        },
-      }}
+      initialRouteName="Play"
     >
-      {/* <Tab.Screen
-        name="Home"
-        component={Home}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: () => (
-            <Image
-            source={require('../assets/tabbaricons/home1.png')}
-            style={{ width: 24, height: 24 }}
-            />
-            ),
-          }}
-        /> */}
-      <Tab.Screen
+      <Drawer.Screen
         name="Play"
         component={Play}
         options={{
-          tabBarLabel: 'Play',
-          tabBarIcon: () => (
+          drawerIcon: () => (
             <Image
-              source={require('../assets/tabbaricons/play2.png')}
               style={{ width: 24, height: 24 }}
+              source={require('../assets/play.png')}
             />
+          ),
+          drawerLabel: () => (
+            <Text
+              style={{
+                color: 'white',
+                fontFamily: 'Roboto',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: 20,
+                lineHeight: 40,
+              }}
+            >
+              Playtime
+            </Text>
           ),
         }}
       />
-      <Tab.Screen
+      <Drawer.Screen
         name="Event"
         component={Event}
         options={{
-          tabBarLabel: 'Event',
-          tabBarIcon: () => (
+          drawerIcon: () => (
             <Image
-              source={require('../assets/tabbaricons/calendar1.png')}
               style={{ width: 24, height: 24 }}
+              source={require('../assets/event.png')}
             />
+          ),
+          drawerLabel: () => (
+            <Text
+              style={{
+                color: 'white',
+                fontFamily: 'Roboto',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: 20,
+                lineHeight: 40,
+              }}
+            >
+              Events
+            </Text>
           ),
         }}
       />
-      <Tab.Screen
+      <Drawer.Screen
         name="Reward"
         component={Reward}
         options={{
-          tabBarLabel: 'Reward',
-          tabBarIcon: () => (
+          drawerIcon: () => (
             <Image
-              source={require('../assets/tabbaricons/reward1.png')}
               style={{ width: 24, height: 24 }}
+              source={require('../assets/reward.png')}
             />
+          ),
+          drawerLabel: () => (
+            <Text
+              style={{
+                color: 'white',
+                fontFamily: 'Roboto',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: 20,
+                lineHeight: 40,
+              }}
+            >
+              Redeem
+            </Text>
           ),
         }}
       />
-      <Tab.Screen
+      <Drawer.Screen
         name="Setting"
         component={Setting}
         options={{
-          tabBarLabel: 'Setting',
-          tabBarIcon: () => (
+          drawerIcon: () => (
             <Image
-              source={require('../assets/tabbaricons/setting2.png')}
               style={{ width: 24, height: 24 }}
+              source={require('../assets/setting.png')}
             />
+          ),
+          drawerLabel: () => (
+            <Text
+              style={{
+                color: 'white',
+                fontFamily: 'Roboto',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: 20,
+                lineHeight: 40,
+              }}
+            >
+              Setting
+            </Text>
           ),
         }}
       />
-    </Tab.Navigator>
+      <Drawer.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          drawerIcon: () => (
+            <Image
+              style={{ width: 22, height: 26 }}
+              source={require('../assets/profile.png')}
+            />
+          ),
+          drawerLabel: () => (
+            <Text
+              style={{
+                color: 'white',
+                fontFamily: 'Roboto',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: 20,
+                lineHeight: 40,
+              }}
+            >
+              Profile
+            </Text>
+          ),
+        }}
+      />
+    </Drawer.Navigator>
+    // </BlurView>
   )
 }
+
+export default function Dashboard() {
+  return <MyDrawer />
+}
+
+const styles = StyleSheet.create({
+  drawerContent: {
+    flex: 1,
+  },
+  userInfoSection: {
+    paddingLeft: 20,
+  },
+  drawerItemLabel: {
+    fontSize: 16,
+    marginLeft: -16,
+    fontWeight: 'bold',
+  },
+})

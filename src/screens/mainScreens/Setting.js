@@ -1,15 +1,25 @@
 import React from 'react'
-import { Image, StyleSheet, View } from 'react-native'
+import { Image, Pressable, StyleSheet, View } from 'react-native'
 import { Text } from 'react-native-paper'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import Background from '../../components/Background'
 import { theme } from '../../core/theme'
 import Header from '../../components/Header'
 
-export default function Setting() {
+export default function Setting({ navigation }) {
   return (
     <Background type="main">
-      <Header label="Settings" icon={require('../../assets/setting.png')} />
+      <View style={{ display: 'flex', flexDirection: 'row' }}>
+        <Pressable onPress={() => navigation.openDrawer()}>
+          <Image
+            size={25}
+            source={require('../../assets/Drawer.png')}
+            style={styles.Davatar}
+            resizeMode="contain"
+          />
+        </Pressable>
+        <Header label="Settings" icon={require('../../assets/setting.png')} />
+      </View>
       <View style={styles.contain}>
         <Image
           source={require('../../assets/arrowright.png')}
@@ -53,5 +63,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#FFFFFF',
     fontWeight: '500',
+  },
+  Davatar: {
+    borderRadius: 0,
+    backgroundColor: '#FFFFFF00',
+    width: 25,
+    height: 25,
+    marginRight: 15,
   },
 })

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Image, StyleSheet, View, ScrollView } from 'react-native'
+import { Image, StyleSheet, View, ScrollView, Pressable } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { Text } from 'react-native-paper'
 import QRCode from 'react-native-qrcode-svg'
@@ -13,7 +13,7 @@ import { theme } from '../../core/theme'
 import StyleCard from '../../components/StyledCard'
 import { store } from '../../store'
 
-export default function Event() {
+export default function Event({ navigation }) {
   const state = store.getState()
   const [status, setStatus] = useState({ value: 'myevent' })
   const allEvents = state.campaign.events
@@ -24,7 +24,17 @@ export default function Event() {
 
   return (
     <Background type="main">
-      <Header label="Events" icon={require('../../assets/event.png')} />
+      <View style={{ display: 'flex', flexDirection: 'row' }}>
+        <Pressable onPress={() => navigation.openDrawer()}>
+          <Image
+            size={25}
+            source={require('../../assets/Drawer.png')}
+            style={styles.Davatar}
+            resizeMode="contain"
+          />
+        </Pressable>
+        <Header label="Events" icon={require('../../assets/event.png')} />
+      </View>
       <ScrollView>
         <View style={styles.contain}>
           <Button
@@ -284,5 +294,12 @@ const styles = StyleSheet.create({
     right: 0,
     borderRightWidth: 3,
     borderRightColor: theme.colors.white,
+  },
+  Davatar: {
+    borderRadius: 0,
+    backgroundColor: '#FFFFFF00',
+    width: 25,
+    height: 25,
+    marginRight: 15,
   },
 })

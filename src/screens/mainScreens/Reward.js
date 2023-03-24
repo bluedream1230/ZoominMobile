@@ -1,5 +1,12 @@
 import React, { useState } from 'react'
-import { Dimensions, StyleSheet, View, Image, ScrollView } from 'react-native'
+import {
+  Dimensions,
+  StyleSheet,
+  View,
+  Image,
+  ScrollView,
+  Pressable,
+} from 'react-native'
 import { Text } from 'react-native-paper'
 import Background from '../../components/Background'
 import Header from '../../components/Header'
@@ -9,14 +16,24 @@ import StoreCard from '../../components/StoreCard'
 import StyleCard from '../../components/StyledCard'
 import { store } from '../../store'
 
-export default function Reward() {
+export default function Reward({ navigation }) {
   const state = store.getState()
   const [status, setStatus] = useState({ value: 'store' })
   const allRewards = state.campaign.rewards
   console.log('rewardsdssss', allRewards)
   return (
     <Background type="main">
-      <Header label="Redeem" icon={require('../../assets/reward.png')} />
+      <View style={{ display: 'flex', flexDirection: 'row' }}>
+        <Pressable onPress={() => navigation.openDrawer()}>
+          <Image
+            size={25}
+            source={require('../../assets/Drawer.png')}
+            style={styles.Davatar}
+            resizeMode="contain"
+          />
+        </Pressable>
+        <Header label="Redeem" icon={require('../../assets/reward.png')} />
+      </View>
       <View style={styles.contain}>
         <Button
           labelStyle={{ color: theme.colors.white }}
@@ -45,8 +62,8 @@ export default function Reward() {
       {status.value === 'store' ? (
         <ScrollView>
           <View style={styles.preview}>
-            {allRewards[0] &&
-              allRewards[0]
+            {allRewards &&
+              allRewards
                 .filter((item) => item.type === 'Coupon')
                 .map((item, index) => {
                   return (
@@ -63,8 +80,8 @@ export default function Reward() {
       ) : status.value === 'reward' ? (
         <ScrollView>
           <View style={styles.preview1}>
-            {allRewards[0] &&
-              allRewards[0]
+            {allRewards &&
+              allRewards
                 .filter((item) => item.type === 'Reward')
                 .map((item, index) => {
                   console.log('item', item)
@@ -179,5 +196,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 18,
     color: '#FFFFFF',
+  },
+  Davatar: {
+    borderRadius: 0,
+    backgroundColor: '#FFFFFF00',
+    width: 25,
+    height: 25,
+    marginRight: 15,
   },
 })

@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { PersistGate } from 'redux-persist/integration/react'
+import { useFonts } from 'expo-font'
 import { theme } from './src/core/theme'
 import {
   LoginScreen,
@@ -16,13 +17,12 @@ import {
   Welcome,
 } from './src/screens'
 import { persistor, store } from './src/store'
-import { useFonts } from 'expo-font'
 
 const Stack = createStackNavigator()
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    Inter: require('./src/assets/Inter.woff'),
+    Inter: require('./assets/Inter.ttf'),
     Roboto: require('./assets/Roboto-Regular.ttf'),
   })
   return (

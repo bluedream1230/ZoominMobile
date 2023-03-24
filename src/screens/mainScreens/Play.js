@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, ScrollView, Image } from 'react-native'
+import { StyleSheet, View, ScrollView, Image, Pressable } from 'react-native'
 import { Text } from 'react-native-paper'
 import QRCode from 'react-native-qrcode-svg'
 import Background from '../../components/Background'
@@ -9,15 +9,27 @@ import { theme } from '../../core/theme'
 import StyleCard from '../../components/StyledCard'
 import { store } from '../../store'
 
-export default function Play() {
+export default function Play({ navigation }) {
   const state = store.getState()
   const [status, setStatus] = useState({ value: 'playground' })
   const allEvents = state.campaign.events
   const today = new Date()
   return (
     <Background type="main">
-      <Header label="Play Time" icon={require('../../assets/play.png')} />
-
+      <View style={{ display: 'flex', flexDirection: 'row', height: 25 }}>
+        <Pressable
+          onPress={() => navigation.openDrawer()}
+          style={{ display: 'flex', justifyContent: 'center' }}
+        >
+          <Image
+            size={25}
+            source={require('../../assets/Drawer.png')}
+            style={styles.Davatar}
+            resizeMode="contain"
+          />
+        </Pressable>
+        <Header label="Play Time" icon={require('../../assets/play.png')} />
+      </View>
       <View style={styles.contain}>
         <Button
           labelStyle={{ color: theme.colors.white }}
@@ -249,6 +261,13 @@ const styles = StyleSheet.create({
     right: 0,
     borderRightWidth: 3,
     borderRightColor: theme.colors.white,
+  },
+  Davatar: {
+    borderRadius: 0,
+    backgroundColor: '#FFFFFF00',
+    width: 20,
+    height: 16,
+    marginRight: 15,
   },
   avatar: {
     borderRadius: 0,
