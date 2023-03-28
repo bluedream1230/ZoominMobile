@@ -21,9 +21,11 @@ export default function Welcome({ navigation }) {
   const [play, setPlay] = React.useState(false)
   const allEvents = state.campaign.events
   const today = new Date()
-  const params = new URLSearchParams(window.location.search)
-  const eventid = params.get('event_id')
-  const play_flag = params.get('play_flag')
+  // const params = new URLSearchParams(window.location.search)
+  // const eventid = params.get('event_id')
+  const eventid = 84
+  // const play_flag = params.get('play_flag')
+  const play_flag = true
   console.log('event_id : ', eventid)
   console.log(allEvents)
   const futureEvent = allEvents.filter(
@@ -45,36 +47,35 @@ export default function Welcome({ navigation }) {
   }
   const onGameJoin = async () => {
     console.log(game_url)
+    console.log('futureEvent', futureEvent[0].rewards)
     dispatch({ type: GET_REWARDS, rewards: futureEvent[0].rewards })
-    try {
-      const attend = await createAttend({
-        user_id: Number(decoded.id),
-        event_id: Number(eventid),
-        score: 0,
-      })
-    } catch (e) {
-      try {
-        const attend = await updateAttend(
-          {
-            user_id: Number(decoded.id),
-            event_id: Number(eventid),
-            score: 0,
-          },
-          eventid,
-          decoded.id
-        )
-      } catch (err) {
-        console.log(err)
-      }
-      console.log(e)
-    }
-    console.log('111111111')
+    // try {
+    //   const attend = await createAttend({
+    //     user_id: Number(decoded.id),
+    //     event_id: Number(eventid),
+    //     score: 0,
+    //   })
+    // } catch (e) {
+    //   try {
+    //     const attend = await updateAttend(
+    //       {
+    //         user_id: Number(decoded.id),
+    //         event_id: Number(eventid),
+    //         score: 0,
+    //       },
+    //       eventid,
+    //       decoded.id
+    //     )
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    //   console.log(e)
+    // }
     // const getPlayerlist = Api.post(
     //   'https://app.zoomingaming.com/api/Index.php/Player/get_players?event_id=' +
     //     eventid
     // )
     // console.log('getPlayerlist', getPlayerlist)
-    console.log('2222222222')
     navigation.navigate('Dashboard')
     // Linking.openURL({ game_url })
   }
@@ -98,10 +99,11 @@ export default function Welcome({ navigation }) {
             setStatus(() => {
               if (!s.isPlaying && play) {
                 if (!play_flag) {
-                  Linking.openURL(
-                    'https://app.zoomingaming.com/login.html?event_id=' +
-                      eventid
-                  )
+                  // Linking.openURL(
+                  //   'https://app.zoomingaming.com/login.html?event_id=' +
+                  //     eventid
+                  // )
+                  setPlay(true)
                 }
               } else {
                 setTimeout(() => {

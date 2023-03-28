@@ -27,8 +27,9 @@ const styles = StyleSheet.create({
   header: {
     display: 'flex',
     flexDirection: 'row',
-    marginBottom: 10,
-    marginRight: 10,
+    // marginBottom: 10,
+    // marginRight: 10,
+    alignItems: 'center',
   },
   text: {
     paddingLeft: 20,

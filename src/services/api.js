@@ -89,6 +89,7 @@ class Api {
       // const baseURL = isMobile
       //   ? 'http://10.0.2.2:3000'
       //   : 'http://localhost:3000'
+      // 'https://play.zoomingaming.com'
 
       const options = {
         baseURL: 'https://play.zoomingaming.com',
@@ -102,6 +103,43 @@ class Api {
         options.params = data
       } else {
         options.data = data
+      }
+
+      return axiosInstance(options)
+        .then((res) => res.data)
+        .catch((err) => {
+          return Api.wrapApiErrors(err)
+        })
+    }
+    return sendRequest(axios.create())
+  }
+
+  static uploadFile(route, data, params, file) {
+    const state = store.getState()
+    console.log('apidata:', route, data, params, file)
+
+    const sendRequest = (axiosInstance) => {
+      const url = Api.replaceVariables(route, params)
+      const headers = {
+        'Content-Type': 'multipart/form-data',
+      }
+
+      if (state.auth.token) {
+        headers.Authorization = `Bearer ${state.auth.token}`
+      }
+
+      const formData = new FormData()
+      formData.append('file', file)
+      console.log('formdata:', formData)
+      Object.keys(data).forEach((key) => formData.append(key, data[key]))
+
+      const options = {
+        baseURL: 'https://play.zoomingaming.com',
+        url,
+        method: 'put',
+        headers,
+        timeout: 30000,
+        data: formData,
       }
 
       return axiosInstance(options)

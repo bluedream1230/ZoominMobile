@@ -200,8 +200,8 @@ const styles = StyleSheet.create({
   Davatar: {
     borderRadius: 0,
     backgroundColor: '#FFFFFF00',
-    width: 25,
-    height: 25,
+    width: 20,
+    height: 16,
     marginRight: 15,
   },
 })

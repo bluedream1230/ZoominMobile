@@ -14,5 +14,6 @@ export const theme = {
     link: '#04B4DD',
     cardBackground: '#221343',
     cardBorder: '#3A3A3A',
+    grey: '#a8a8a8',
   },
 }

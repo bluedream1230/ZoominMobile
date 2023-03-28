@@ -16,13 +16,14 @@ import { createAttend, getAttends, getEvents } from '../services/apis/server'
 
 export default function LoginScreen({ navigation }) {
   const dispatch = useDispatch()
-  const params = new URLSearchParams(window.location.search)
-  const eventid = params.get('event_id')
+  // const params = new URLSearchParams(window.location.search)
+  // const eventid = params.get('event_id')
+  const eventid = 84
   const [email, setEmail] = useState({
-    value: '',
+    value: 'test@test.com',
     error: '',
   })
-  const [password, setPassword] = useState({ value: '', error: '' })
+  const [password, setPassword] = useState({ value: '123123', error: '' })
 
   const onLoginPressed = () => {
     const emailError = emailValidator(email.value)
