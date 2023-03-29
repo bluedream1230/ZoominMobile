@@ -2,6 +2,7 @@ import * as actionTypes from './actions'
 
 export const authState = {
   token: null,
+  userInfo: [],
 }
 
 const authReducer = (state = authState, action) => {
@@ -15,6 +16,11 @@ const authReducer = (state = authState, action) => {
     case actionTypes.LOG_OUT:
       return {
         ...authState,
+      }
+    case actionTypes.USERINFO:
+      return {
+        ...state,
+        userInfo: action.userInfo,
       }
     default:
       return state

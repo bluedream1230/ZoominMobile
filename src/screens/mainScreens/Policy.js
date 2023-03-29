@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Image, Pressable, StyleSheet, View } from 'react-native'
 import { Text } from 'react-native-paper'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
@@ -6,7 +6,7 @@ import Background from '../../components/Background'
 import { theme } from '../../core/theme'
 import Header from '../../components/Header'
 
-export default function Setting({ navigation }) {
+export default function Policy({ navigation }) {
   return (
     <Background type="main">
       <View style={{ display: 'flex', flexDirection: 'row' }}>
@@ -18,35 +18,27 @@ export default function Setting({ navigation }) {
             resizeMode="contain"
           />
         </Pressable>
-        <Header label="Settings" icon={require('../../assets/setting.png')} />
+        <Header
+          label="Privacy Policy"
+          icon={require('../../assets/setting.png')}
+        />
       </View>
       <View style={styles.contain}>
         <Image
-          source={require('../../assets/arrowright.png')}
-          style={{ width: 24, height: 24 }}
+          source={require('../../assets/privacypolicy.png')}
+          style={styles.image}
         />
-        <Text style={styles.text}>Zoomin Game</Text>
-      </View>
-      <View style={styles.contain}>
-        <Image
-          source={require('../../assets/arrowright.png')}
-          style={{ width: 24, height: 24 }}
-        />
-        <Text style={styles.text}>How To Play</Text>
-      </View>
-      <View style={styles.contain}>
-        <Image
-          source={require('../../assets/arrowright.png')}
-          style={{ width: 24, height: 24 }}
-        />
-        <Text style={styles.text}>Game Play</Text>
-      </View>
-      <View style={styles.contain}>
-        <Image
-          source={require('../../assets/arrowright.png')}
-          style={{ width: 24, height: 24 }}
-        />
-        <Text style={styles.text}>Turn On Notification</Text>
+        <Text style={styles.text}>
+          Suscipit nullam porta suspendisse ut proin. A dolor hac leo fusce. Id
+          tempor convallis sed tellus in adipiscing est. Porta risus tincidunt
+          eget quam ac fames. Et lectus diam in faucibus id faucibus. Integer
+          egestas nisl lobortis donec massa neque. In arcu ut orci consectetur
+          vel diam molestie. Nec massa quis mollis nisi. Hendrerit cras leo nec
+          at enim facilisi. Blandit imperdiet nibh elementum lectus. Tortor ut
+          in dis magnis. Pharetra sed est elit est amet scelerisque. Porttitor
+          posuere quisque pellentesque habitant felis porttitor accumsan. Nam
+          eget nullam nam eu. Urna erat viverra quisque at. Nulla metus.
+        </Text>
       </View>
     </Background>
   )

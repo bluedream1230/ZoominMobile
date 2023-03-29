@@ -92,7 +92,7 @@ class Api {
       // 'https://play.zoomingaming.com'
 
       const options = {
-        baseURL: 'https://play.zoomingaming.com',
+        baseURL: 'http://localhost:3000',
         url,
         method,
         headers,
@@ -134,7 +134,7 @@ class Api {
       Object.keys(data).forEach((key) => formData.append(key, data[key]))
 
       const options = {
-        baseURL: 'https://play.zoomingaming.com',
+        baseURL: 'http://localhost:3000',
         url,
         method: 'put',
         headers,

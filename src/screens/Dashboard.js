@@ -3,7 +3,9 @@ import { Image, View, Button, StyleSheet } from 'react-native'
 import { Text } from 'react-native-paper'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 
-import { Setting, Reward, Event, Play, Profile } from './mainScreens'
+import { Reward, Event, Play, Profile, Policy } from './mainScreens'
+import LoginScreen from './LoginScreen'
+import { setTopLevelNavigator } from '../store'
 
 const Drawer = createDrawerNavigator()
 
@@ -98,32 +100,7 @@ function MyDrawer() {
           ),
         }}
       />
-      <Drawer.Screen
-        name="Setting"
-        component={Setting}
-        options={{
-          drawerIcon: () => (
-            <Image
-              style={{ width: 24, height: 24 }}
-              source={require('../assets/setting.png')}
-            />
-          ),
-          drawerLabel: () => (
-            <Text
-              style={{
-                color: 'white',
-                fontFamily: 'Roboto',
-                fontStyle: 'normal',
-                fontWeight: '500',
-                fontSize: 20,
-                lineHeight: 40,
-              }}
-            >
-              Setting
-            </Text>
-          ),
-        }}
-      />
+
       <Drawer.Screen
         name="Profile"
         component={Profile}
@@ -150,12 +127,68 @@ function MyDrawer() {
           ),
         }}
       />
+      <Drawer.Screen
+        name="Policy"
+        component={Policy}
+        options={{
+          drawerIcon: () => (
+            <Image
+              style={{ width: 24, height: 24 }}
+              source={require('../assets/setting.png')}
+            />
+          ),
+          drawerLabel: () => (
+            <Text
+              style={{
+                color: 'white',
+                fontFamily: 'Roboto',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: 20,
+                lineHeight: 40,
+              }}
+            >
+              Privacy
+            </Text>
+          ),
+        }}
+      />
+
+      <Drawer.Screen
+        name="Logout"
+        component={LoginScreen}
+        options={{
+          drawerIcon: () => (
+            <Image
+              style={{ width: 24, height: 24 }}
+              source={require('../assets/signout.png')}
+            />
+          ),
+          drawerLabel: () => (
+            <Text
+              style={{
+                color: 'white',
+                fontFamily: 'Roboto',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: 20,
+                lineHeight: 40,
+              }}
+            >
+              Logout
+            </Text>
+          ),
+        }}
+      />
     </Drawer.Navigator>
     // </BlurView>
   )
 }
 
-export default function Dashboard() {
+export default function Dashboard({ navigation }) {
+  useEffect(() => {
+    setTopLevelNavigator(navigation)
+  }, [])
   return <MyDrawer />
 }
 

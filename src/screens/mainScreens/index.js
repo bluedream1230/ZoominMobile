@@ -1,5 +1,5 @@
 export { default as Profile } from './Profile'
-export { default as Setting } from './Setting'
+export { default as Policy } from './Policy'
 export { default as Reward } from './Reward'
 export { default as Event } from './Event'
 export { default as Play } from './Play'

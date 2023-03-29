@@ -1,6 +1,7 @@
 // action - auth reducer
 export const SET_TOKEN = '@auth/SET_TOKEN'
 export const LOG_OUT = '@auth/LOG_OUT'
+export const USERINFO = '@auth/USERINFO'
 
 // action - campagin reducer
 export const GET_EVENTS = '@campaign/GET_EVENTS'

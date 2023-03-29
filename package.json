@@ -42,6 +42,7 @@
     "react-native-document-picker": "^8.2.0",
     "react-native-gesture-handler": "~1.8.0",
     "react-native-masked-text": "^1.12.5",
+    "react-native-modal": "^13.0.0",
     "react-native-modal-datetime-picker": "^14.0.1",
     "react-native-paper": "^4.4.1",
     "react-native-qrcode-svg": "6.1.1",

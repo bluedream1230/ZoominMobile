@@ -22,7 +22,8 @@ import Button from '../../components/Button'
 import { nameValidator } from '../../helpers/nameValidator'
 import { emailValidator } from '../../helpers/emailValidator'
 import { store } from '../../store'
-import { updateUserInfo } from '../../services/apis/user'
+import { getUserInfo, updateUserInfo } from '../../services/apis/user'
+import { USERINFO } from '../../store/actions'
 
 export default function Profile({ navigation }) {
   const dispatch = useDispatch()
@@ -30,7 +31,7 @@ export default function Profile({ navigation }) {
   const decoded = jwt_decode(state.auth.token)
   console.log(decoded)
   const [shippingAddress, setShippingAddress] = useState({
-    value: '',
+    value: decoded.shipping,
     error: '',
   })
   const [phoneNumber, setPhoneNumber] = useState({
@@ -87,6 +88,8 @@ export default function Profile({ navigation }) {
       //   index: 0,
       //   routes: [{ name: 'LoginScreen' }],
       // })
+      const user_Info = await getUserInfo()
+      dispatch({ type: USERINFO, userInfo: user_Info })
     } catch (e) {
       console.log({ e })
     }
@@ -146,7 +149,7 @@ export default function Profile({ navigation }) {
               source={require('../../assets/coin.png')}
               style={styles.avatar}
             />
-            <Text style={styles.val}>20</Text>
+            <Text style={styles.val}>{decoded.coins}</Text>
           </View>
           <Image
             size={24}

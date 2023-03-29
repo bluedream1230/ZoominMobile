@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Image, StyleSheet, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import jwt_decode from 'jwt-decode'
@@ -7,13 +7,17 @@ import { Video } from 'expo-av'
 import { theme } from '../core/theme'
 import Background from '../components/Background'
 import Button from '../components/Button'
-import { store } from '../store'
+import { setTopLevelNavigator, store } from '../store'
 import { Linking } from 'expo'
 import { GET_REWARDS } from '../store/actions'
 import { createAttend, updateAttend } from '../services/apis/server'
 import Api from '../services/api'
 
 export default function Welcome({ navigation }) {
+  useEffect(() => {
+    setTopLevelNavigator(navigation)
+  }, [])
+
   const dispatch = useDispatch()
   const video = React.useRef(null)
   const state = store.getState()
@@ -23,7 +27,7 @@ export default function Welcome({ navigation }) {
   const today = new Date()
   // const params = new URLSearchParams(window.location.search)
   // const eventid = params.get('event_id')
-  const eventid = 84
+  const eventid = 24
   // const play_flag = params.get('play_flag')
   const play_flag = true
   console.log('event_id : ', eventid)

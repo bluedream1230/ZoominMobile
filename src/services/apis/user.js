@@ -1,6 +1,7 @@
 import Api from '../api'
 import { LOG_OUT } from '../../store/actions'
 import {
+  API_GET_USER_INFO,
   API_RESETPASSWORD,
   API_UPDATE_PASS,
   API_UPDATE_USER_INFO,
@@ -28,6 +29,10 @@ export const updateUserInfo = async (data, files) => {
     {},
     files
   )
+}
+
+export const getUserInfo = async () => {
+  return Api.get(API_GET_USER_INFO)
 }
 
 export const resetPassword = async (data) => {

@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import { Image } from 'expo-image'
 import { StyleSheet, View, Image } from 'react-native'
 import { Text, Avatar, Button, Card } from 'react-native-paper'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { theme } from '../core/theme'
 
-export default function StoreCard({ label, url, val }) {
+export default function StoreCard({ label, url, val, onClickRedeem }) {
   return (
     <View style={styles.main}>
       <View style={styles.cardheader}>
@@ -22,7 +22,11 @@ export default function StoreCard({ label, url, val }) {
       <View style={styles.mainbackground}>
         <Image source={{ uri: url }} style={styles.storeAvatar} />
       </View>
-      <Button style={styles.storebutton} labelStyle={styles.text}>
+      <Button
+        style={styles.storebutton}
+        labelStyle={styles.text}
+        onPress={onClickRedeem}
+      >
         Redeem Now
         <Image
           source={require('../assets/arrowright.png')}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { TouchableOpacity, StyleSheet, View, Image } from 'react-native'
 import { Text } from 'react-native-paper'
@@ -10,15 +10,15 @@ import { theme } from '../core/theme'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { store } from '../store'
-import { login } from '../services/apis/user'
-import { GET_ATTENDS, GET_EVENTS, SET_TOKEN } from '../store/actions'
+import { getUserInfo, login } from '../services/apis/user'
+import { GET_ATTENDS, GET_EVENTS, SET_TOKEN, USERINFO } from '../store/actions'
 import { createAttend, getAttends, getEvents } from '../services/apis/server'
 
 export default function LoginScreen({ navigation }) {
   const dispatch = useDispatch()
   // const params = new URLSearchParams(window.location.search)
   // const eventid = params.get('event_id')
-  const eventid = 84
+  const eventid = 24
   const [email, setEmail] = useState({
     value: 'test@test.com',
     error: '',
@@ -44,16 +44,17 @@ export default function LoginScreen({ navigation }) {
       })
       const { access_token } = data
       dispatch({ type: SET_TOKEN, token: access_token })
-
+      const user_Info = await getUserInfo()
+      dispatch({ type: USERINFO, userInfo: user_Info })
       const allEvent = await getEvents()
       dispatch({ type: GET_EVENTS, events: allEvent })
       const allAttend = await getAttends()
       dispatch({ type: GET_ATTENDS, attends: allAttend })
+
       if (eventid) {
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'Welcome' }],
-        })
+        navigation.navigate('Welcome')
+      } else if (navigation.canGoBack()) {
+        navigation.navigate('Play')
       } else {
         navigation.navigate('Dashboard')
       }
