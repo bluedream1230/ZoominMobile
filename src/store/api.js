@@ -8,6 +8,7 @@ export const API_GET_EVENTS = '/api/event_api'
 export const API_GET_ATTENDS = '/api/fan'
 export const API_UPDATE_ATTENDS = '/api/fan/update/:eventId/:id'
 export const API_GET_REDEMPTIONS = '/api/redemption/:id'
+export const API_CREATE_REDEMPTION = '/api/redemption'
 
 export const API_UPDATE_USER_INFO = '/api/users/update'
 export const API_GET_USER_INFO = '/api/users'

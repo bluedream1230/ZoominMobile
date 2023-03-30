@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { TouchableOpacity, StyleSheet, View, Image } from 'react-native'
 import { Text } from 'react-native-paper'
+import jwt_decode from 'jwt-decode'
 import Background from '../components/Background'
 import Logo from '../components/Logo'
 import Button from '../components/Button'
@@ -11,8 +12,21 @@ import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { store } from '../store'
 import { getUserInfo, login } from '../services/apis/user'
-import { GET_ATTENDS, GET_EVENTS, SET_TOKEN, USERINFO } from '../store/actions'
-import { createAttend, getAttends, getEvents } from '../services/apis/server'
+import {
+  GET_ALL_REWARDS,
+  GET_ATTENDS,
+  GET_EVENTS,
+  GET_REDEMPTION,
+  SET_TOKEN,
+  USERINFO,
+} from '../store/actions'
+import {
+  createAttend,
+  getAttends,
+  getEvents,
+  getRedemptions,
+  getRewards,
+} from '../services/apis/server'
 
 export default function LoginScreen({ navigation }) {
   const dispatch = useDispatch()
@@ -44,12 +58,18 @@ export default function LoginScreen({ navigation }) {
       })
       const { access_token } = data
       dispatch({ type: SET_TOKEN, token: access_token })
+      const userinfo = jwt_decode(access_token)
       const user_Info = await getUserInfo()
       dispatch({ type: USERINFO, userInfo: user_Info })
       const allEvent = await getEvents()
       dispatch({ type: GET_EVENTS, events: allEvent })
       const allAttend = await getAttends()
       dispatch({ type: GET_ATTENDS, attends: allAttend })
+      const redemption = await getRedemptions(userinfo.id)
+      console.log('clamied rewards', redemption)
+      dispatch({ type: GET_REDEMPTION, redemptions: redemption })
+      const allReward = await getRewards()
+      dispatch({ type: GET_ALL_REWARDS, allRewards: allReward })
 
       if (eventid) {
         navigation.navigate('Welcome')

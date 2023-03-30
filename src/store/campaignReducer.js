@@ -4,6 +4,8 @@ export const campaignState = {
   events: [],
   rewards: [],
   attends: [],
+  redemptions: [],
+  allRewards: [],
 }
 
 // ==============================|| CUSTOMIZATION REDUCER ||============================== //
@@ -24,6 +26,16 @@ const campaignReducer = (state = campaignState, action) => {
       return {
         ...state,
         attends: action.attends,
+      }
+    case actionTypes.GET_REDEMPTION:
+      return {
+        ...state,
+        redemptions: action.redemptions,
+      }
+    case actionTypes.GET_ALL_REWARDS:
+      return {
+        ...state,
+        allRewards: action.allRewards,
       }
     default:
       return state

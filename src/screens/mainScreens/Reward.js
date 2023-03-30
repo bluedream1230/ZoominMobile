@@ -8,8 +8,9 @@ import {
   Pressable,
 } from 'react-native'
 import { Text, Avatar, Modal } from 'react-native-paper'
+import { useDispatch } from 'react-redux'
 // import Modal from 'react-native-modal'
-import jwt_decode from 'jwt-decode'
+
 import Background from '../../components/Background'
 import Header from '../../components/Header'
 import Button from '../../components/Button'
@@ -17,10 +18,12 @@ import { theme } from '../../core/theme'
 import StoreCard from '../../components/StoreCard'
 import StyleCard from '../../components/StyledCard'
 import { store } from '../../store'
-import { getRedemptions } from '../../services/apis/server'
+import { createRedemption, getRedemptions } from '../../services/apis/server'
 import { updateUserInfo } from '../../services/apis/user'
+import { GET_REDEMPTION } from '../../store/actions'
 
 export default function Reward({ navigation }) {
+  const dispatch = useDispatch()
   const state = store.getState()
   const user_info = state.auth.userInfo
   const shippingAddress = user_info.shipping
@@ -47,9 +50,10 @@ export default function Reward({ navigation }) {
 
   const onConfirm = async () => {
     setConfirmModalVisible(true)
-    // TODO show redemptions
-    // Update coin value
-    const redemptions = await getRedemptions(user_info.id)
+    const newRedemption = await createRedemption({
+      user_id: user_info.id,
+      reward_id: des.id,
+    })
     const restcoin = Number(user_info.coins) - Number(des.coinvalue)
     console.log(restcoin)
     const data = await updateUserInfo({
@@ -58,8 +62,12 @@ export default function Reward({ navigation }) {
     toggleModal()
   }
 
-  const onRedemptions = () => {
+  const onRedemptions = async () => {
+    const redemption = await getRedemptions(user_info.id)
+    console.log(redemption)
+    dispatch({ type: GET_REDEMPTION, redemptions: redemption })
     setConfirmModalVisible(false)
+    navigation.navigate('Redemption')
   }
 
   return (

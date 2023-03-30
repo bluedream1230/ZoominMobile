@@ -6,4 +6,6 @@ export const USERINFO = '@auth/USERINFO'
 // action - campagin reducer
 export const GET_EVENTS = '@campaign/GET_EVENTS'
 export const GET_REWARDS = '@campaign/GET_REWARDS'
+export const GET_ALL_REWARDS = '@campaign/GET_ALL_REWARDS'
 export const GET_ATTENDS = '@campaign/GET_ATTENDS'
+export const GET_REDEMPTION = '@campaign/GET_REDEMPTION'

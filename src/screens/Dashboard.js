@@ -6,6 +6,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer'
 import { Reward, Event, Play, Profile, Policy } from './mainScreens'
 import LoginScreen from './LoginScreen'
 import { setTopLevelNavigator } from '../store'
+import Redemption from './mainScreens/Redemptions'
 
 const Drawer = createDrawerNavigator()
 
@@ -100,7 +101,32 @@ function MyDrawer() {
           ),
         }}
       />
-
+      <Drawer.Screen
+        name="Redemption"
+        component={Redemption}
+        options={{
+          drawerIcon: () => (
+            <Image
+              style={{ width: 22, height: 26 }}
+              source={require('../assets/redemption.png')}
+            />
+          ),
+          drawerLabel: () => (
+            <Text
+              style={{
+                color: 'white',
+                fontFamily: 'Roboto',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: 20,
+                lineHeight: 40,
+              }}
+            >
+              Claimed
+            </Text>
+          ),
+        }}
+      />
       <Drawer.Screen
         name="Profile"
         component={Profile}

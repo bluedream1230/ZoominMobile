@@ -1,5 +1,6 @@
 import Api from '../api'
 import {
+  API_CREATE_REDEMPTION,
   API_GET_ATTENDS,
   API_GET_EVENTS,
   API_GET_REDEMPTIONS,
@@ -29,4 +30,8 @@ export const updateAttend = async (data, eventId, id) => {
 
 export const getRedemptions = async (id) => {
   return Api.get(API_GET_REDEMPTIONS, {}, { id })
+}
+
+export const createRedemption = async (data) => {
+  return Api.post(API_CREATE_REDEMPTION, data)
 }
