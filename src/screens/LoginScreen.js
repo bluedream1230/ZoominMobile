@@ -30,9 +30,9 @@ import {
 
 export default function LoginScreen({ navigation }) {
   const dispatch = useDispatch()
-  // const params = new URLSearchParams(window.location.search)
-  // const eventid = params.get('event_id')
-  const eventid = 24
+  const params = new URLSearchParams(window.location.search)
+  const eventid = params.get('event_id')
+  // const eventid = 24
   const [email, setEmail] = useState({
     value: 'test@test.com',
     error: '',

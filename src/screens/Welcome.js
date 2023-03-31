@@ -25,9 +25,9 @@ export default function Welcome({ navigation }) {
   const [play, setPlay] = React.useState(false)
   const allEvents = state.campaign.events
   const today = new Date()
-  // const params = new URLSearchParams(window.location.search)
-  // const eventid = params.get('event_id')
-  const eventid = 24
+  const params = new URLSearchParams(window.location.search)
+  const eventid = params.get('event_id')
+  // const eventid = 24
   // const play_flag = params.get('play_flag')
   const play_flag = true
   console.log('event_id : ', eventid)
